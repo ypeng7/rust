@@ -187,20 +187,6 @@
 <span id="143">143</span>
 <span id="144">144</span>
 <span id="145">145</span>
-<span id="146">146</span>
-<span id="147">147</span>
-<span id="148">148</span>
-<span id="149">149</span>
-<span id="150">150</span>
-<span id="151">151</span>
-<span id="152">152</span>
-<span id="153">153</span>
-<span id="154">154</span>
-<span id="155">155</span>
-<span id="156">156</span>
-<span id="157">157</span>
-<span id="158">158</span>
-<span id="159">159</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Binding to [TensorFlow][1].</span>
 <span class='doccomment'>//!</span>
@@ -210,7 +196,38 @@
 
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
 
-<span class='kw'>use</span> <span class='ident'>libc</span>::{<span class='ident'>c_char</span>, <span class='ident'>c_int</span>, <span class='ident'>c_longlong</span>, <span class='ident'>c_void</span>, <span class='ident'>size_t</span>};
+<span class='kw'>use</span> <span class='ident'>libc</span>::{<span class='ident'>c_char</span>, <span class='ident'>c_int</span>, <span class='ident'>c_void</span>, <span class='ident'>int64_t</span>, <span class='ident'>size_t</span>};
+
+<span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>Debug</span>)]</span>
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>TF_Buffer</span> {
+    <span class='kw'>pub</span> <span class='ident'>data</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_void</span>,
+    <span class='kw'>pub</span> <span class='ident'>length</span>: <span class='ident'>size_t</span>,
+    <span class='kw'>pub</span> <span class='ident'>data_deallocator</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw'>unsafe</span> <span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> <span class='kw'>fn</span>(<span class='ident'>data</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>, <span class='ident'>length</span>: <span class='ident'>size_t</span>)<span class='op'>&gt;</span>,
+}
+
+<span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>Debug</span>, <span class='ident'>Eq</span>, <span class='ident'>PartialEq</span>)]</span>
+<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>TF_Code</span> {
+    <span class='ident'>TF_OK</span> <span class='op'>=</span> <span class='number'>0</span>,
+    <span class='ident'>TF_CANCELLED</span> <span class='op'>=</span> <span class='number'>1</span>,
+    <span class='ident'>TF_UNKNOWN</span> <span class='op'>=</span> <span class='number'>2</span>,
+    <span class='ident'>TF_INVALID_ARGUMENT</span> <span class='op'>=</span> <span class='number'>3</span>,
+    <span class='ident'>TF_DEADLINE_EXCEEDED</span> <span class='op'>=</span> <span class='number'>4</span>,
+    <span class='ident'>TF_NOT_FOUND</span> <span class='op'>=</span> <span class='number'>5</span>,
+    <span class='ident'>TF_ALREADY_EXISTS</span> <span class='op'>=</span> <span class='number'>6</span>,
+    <span class='ident'>TF_PERMISSION_DENIED</span> <span class='op'>=</span> <span class='number'>7</span>,
+    <span class='ident'>TF_UNAUTHENTICATED</span> <span class='op'>=</span> <span class='number'>16</span>,
+    <span class='ident'>TF_RESOURCE_EXHAUSTED</span> <span class='op'>=</span> <span class='number'>8</span>,
+    <span class='ident'>TF_FAILED_PRECONDITION</span> <span class='op'>=</span> <span class='number'>9</span>,
+    <span class='ident'>TF_ABORTED</span> <span class='op'>=</span> <span class='number'>10</span>,
+    <span class='ident'>TF_OUT_OF_RANGE</span> <span class='op'>=</span> <span class='number'>11</span>,
+    <span class='ident'>TF_UNIMPLEMENTED</span> <span class='op'>=</span> <span class='number'>12</span>,
+    <span class='ident'>TF_INTERNAL</span> <span class='op'>=</span> <span class='number'>13</span>,
+    <span class='ident'>TF_UNAVAILABLE</span> <span class='op'>=</span> <span class='number'>14</span>,
+    <span class='ident'>TF_DATA_LOSS</span> <span class='op'>=</span> <span class='number'>15</span>,
+}
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>TF_Code</span>::<span class='op'>*</span>;
 
 <span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>Debug</span>, <span class='ident'>Eq</span>, <span class='ident'>PartialEq</span>)]</span>
@@ -237,129 +254,84 @@
 }
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>TF_DataType</span>::<span class='op'>*</span>;
 
-<span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>Debug</span>, <span class='ident'>Eq</span>, <span class='ident'>PartialEq</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>TF_Code</span> {
-    <span class='ident'>TF_OK</span> <span class='op'>=</span> <span class='number'>0</span>,
-    <span class='ident'>TF_CANCELLED</span> <span class='op'>=</span> <span class='number'>1</span>,
-    <span class='ident'>TF_UNKNOWN</span> <span class='op'>=</span> <span class='number'>2</span>,
-    <span class='ident'>TF_INVALID_ARGUMENT</span> <span class='op'>=</span> <span class='number'>3</span>,
-    <span class='ident'>TF_DEADLINE_EXCEEDED</span> <span class='op'>=</span> <span class='number'>4</span>,
-    <span class='ident'>TF_NOT_FOUND</span> <span class='op'>=</span> <span class='number'>5</span>,
-    <span class='ident'>TF_ALREADY_EXISTS</span> <span class='op'>=</span> <span class='number'>6</span>,
-    <span class='ident'>TF_PERMISSION_DENIED</span> <span class='op'>=</span> <span class='number'>7</span>,
-    <span class='ident'>TF_UNAUTHENTICATED</span> <span class='op'>=</span> <span class='number'>16</span>,
-    <span class='ident'>TF_RESOURCE_EXHAUSTED</span> <span class='op'>=</span> <span class='number'>8</span>,
-    <span class='ident'>TF_FAILED_PRECONDITION</span> <span class='op'>=</span> <span class='number'>9</span>,
-    <span class='ident'>TF_ABORTED</span> <span class='op'>=</span> <span class='number'>10</span>,
-    <span class='ident'>TF_OUT_OF_RANGE</span> <span class='op'>=</span> <span class='number'>11</span>,
-    <span class='ident'>TF_UNIMPLEMENTED</span> <span class='op'>=</span> <span class='number'>12</span>,
-    <span class='ident'>TF_INTERNAL</span> <span class='op'>=</span> <span class='number'>13</span>,
-    <span class='ident'>TF_UNAVAILABLE</span> <span class='op'>=</span> <span class='number'>14</span>,
-    <span class='ident'>TF_DATA_LOSS</span> <span class='op'>=</span> <span class='number'>15</span>,
-}
-<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>TF_Code</span>::<span class='op'>*</span>;
-
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>TF_Status</span> {}
-
-<span class='attribute'>#[<span class='ident'>repr</span>(<span class='ident'>C</span>)]</span>
-<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>TF_Buffer</span> {
-  <span class='kw'>pub</span> <span class='ident'>data</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_void</span>,
-  <span class='kw'>pub</span> <span class='ident'>length</span>: <span class='ident'>size_t</span>,
-  <span class='kw'>pub</span> <span class='ident'>data_deallocator</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw'>unsafe</span> <span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> <span class='kw'>fn</span>(<span class='ident'>data</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>, <span class='ident'>length</span>: <span class='ident'>size_t</span>)<span class='op'>&gt;</span>,
-}
-
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>TF_Library</span> {}
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>TF_Tensor</span> {}
+<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>TF_Session</span> {}
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>TF_SessionOptions</span> {}
 
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>Debug</span>)]</span>
-<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>TF_Session</span> {}
+<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>TF_Status</span> {}
+
+<span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>, <span class='ident'>Copy</span>, <span class='ident'>Debug</span>)]</span>
+<span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>TF_Tensor</span> {}
 
 <span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> {
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NewBufferFromString</span>(<span class='ident'>proto</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_void</span>, <span class='ident'>proto_len</span>: <span class='ident'>size_t</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Buffer</span>;
-
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NewBuffer</span>() <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Buffer</span>;
-
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NewBufferFromString</span>(<span class='ident'>proto</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_void</span>, <span class='ident'>length</span>: <span class='ident'>size_t</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Buffer</span>;
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_DeleteBuffer</span>(<span class='ident'>buffer</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Buffer</span>);
-
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_GetBuffer</span>(<span class='ident'>buffer</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Buffer</span>) <span class='op'>-&gt;</span> <span class='ident'>TF_Buffer</span>;
+}
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NewStatus</span>() <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>;
+<span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_LoadLibrary</span>(<span class='ident'>name</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Library</span>;
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_GetOpList</span>(<span class='ident'>library</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Library</span>) <span class='op'>-&gt;</span> <span class='ident'>TF_Buffer</span>;
+}
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_DeleteStatus</span>(<span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_SetStatus</span>(<span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>, <span class='ident'>code</span>: <span class='ident'>TF_Code</span>, <span class='ident'>msg</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>);
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_GetCode</span>(<span class='ident'>status</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Status</span>) <span class='op'>-&gt;</span> <span class='ident'>TF_Code</span>;
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_Message</span>(<span class='ident'>status</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Status</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>;
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NewTensor</span>(<span class='ident'>datatype</span>: <span class='ident'>TF_DataType</span>, <span class='ident'>dims</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_longlong</span>, <span class='ident'>num_dims</span>: <span class='ident'>c_int</span>,
-                        <span class='ident'>data</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>, <span class='ident'>len</span>: <span class='ident'>size_t</span>,
-                        <span class='ident'>deallocator</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw'>unsafe</span> <span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> <span class='kw'>fn</span>(<span class='ident'>data</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>, <span class='ident'>len</span>: <span class='ident'>size_t</span>,
-                                                                 <span class='ident'>arg</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>)<span class='op'>&gt;</span>,
-                        <span class='ident'>deallocator_arg</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Tensor</span>;
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_DeleteTensor</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Tensor</span>);
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_TensorType</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Tensor</span>) <span class='op'>-&gt;</span> <span class='ident'>TF_DataType</span>;
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NumDims</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Tensor</span>) <span class='op'>-&gt;</span> <span class='ident'>c_int</span>;
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_Dim</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Tensor</span>, <span class='ident'>dim_index</span>: <span class='ident'>c_int</span>) <span class='op'>-&gt;</span> <span class='ident'>c_longlong</span>;
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_TensorByteSize</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Tensor</span>) <span class='op'>-&gt;</span> <span class='ident'>size_t</span>;
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_TensorData</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Tensor</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>;
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NewSessionOptions</span>() <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_SessionOptions</span>;
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_SetTarget</span>(<span class='ident'>options</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_SessionOptions</span>, <span class='ident'>target</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>);
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_SetConfig</span>(<span class='ident'>options</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_SessionOptions</span>, <span class='ident'>proto</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_void</span>, <span class='ident'>proto_len</span>: <span class='ident'>size_t</span>,
-                        <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_DeleteSessionOptions</span>(<span class='ident'>options</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_SessionOptions</span>);
-
+<span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> {
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NewSession</span>(<span class='ident'>options</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_SessionOptions</span>, <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>)
                          <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Session</span>;
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_CloseSession</span>(<span class='ident'>session</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Session</span>, <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
-
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_DeleteSession</span>(<span class='ident'>session</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Session</span>, <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
-
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_ExtendGraph</span>(<span class='ident'>session</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Session</span>, <span class='ident'>proto</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_void</span>, <span class='ident'>proto_len</span>: <span class='ident'>size_t</span>,
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_CloseSession</span>(<span class='ident'>session</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Session</span>, <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_ExtendGraph</span>(<span class='ident'>session</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Session</span>, <span class='ident'>proto</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_void</span>, <span class='ident'>length</span>: <span class='ident'>size_t</span>,
                           <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
-
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_Run</span>(<span class='ident'>session</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Session</span>, <span class='ident'>run_options</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Buffer</span>,
                   <span class='ident'>input_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>inputs</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Tensor</span>, <span class='ident'>ninputs</span>: <span class='ident'>c_int</span>,
-                  <span class='ident'>output_tensor_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>outputs</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Tensor</span>,
-                  <span class='ident'>noutputs</span>: <span class='ident'>c_int</span>, <span class='ident'>target_node_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>ntargets</span>: <span class='ident'>c_int</span>,
-                  <span class='ident'>run_metadata</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Buffer</span>, <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
-
+                  <span class='ident'>output_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>outputs</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Tensor</span>, <span class='ident'>noutputs</span>: <span class='ident'>c_int</span>,
+                  <span class='ident'>target_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>ntargets</span>: <span class='ident'>c_int</span>, <span class='ident'>run_metadata</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Buffer</span>,
+                  <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_PRunSetup</span>(<span class='ident'>session</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Session</span>, <span class='ident'>input_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>ninputs</span>: <span class='ident'>c_int</span>,
-                        <span class='ident'>output_tensor_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>noutputs</span>: <span class='ident'>c_int</span>,
-                        <span class='ident'>target_node_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>ntargets</span>: <span class='ident'>c_int</span>,
-                        <span class='ident'>handle</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_char</span>, <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
-
+                        <span class='ident'>output_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>noutputs</span>: <span class='ident'>c_int</span>,
+                        <span class='ident'>target_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>ntargets</span>: <span class='ident'>c_int</span>,
+                        <span class='ident'>handle</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
     <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_PRun</span>(<span class='ident'>session</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Session</span>, <span class='ident'>handle</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>,
                    <span class='ident'>input_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>inputs</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Tensor</span>, <span class='ident'>ninputs</span>: <span class='ident'>c_int</span>,
-                   <span class='ident'>output_tensor_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>outputs</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Tensor</span>,
-                   <span class='ident'>noutputs</span>: <span class='ident'>c_int</span>, <span class='ident'>target_node_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>ntargets</span>: <span class='ident'>c_int</span>,
-                   <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
+                   <span class='ident'>output_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>outputs</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Tensor</span>, <span class='ident'>noutputs</span>: <span class='ident'>c_int</span>,
+                   <span class='ident'>target_names</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>ntargets</span>: <span class='ident'>c_int</span>, <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
+}
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_LoadLibrary</span>(<span class='ident'>library_filename</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>, <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>)
-                          <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Library</span>;
+<span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NewSessionOptions</span>() <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_SessionOptions</span>;
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_DeleteSessionOptions</span>(<span class='ident'>options</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_SessionOptions</span>);
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_SetTarget</span>(<span class='ident'>options</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_SessionOptions</span>, <span class='ident'>target</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>);
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_SetConfig</span>(<span class='ident'>options</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_SessionOptions</span>, <span class='ident'>proto</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_void</span>, <span class='ident'>length</span>: <span class='ident'>size_t</span>,
+                        <span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
+}
 
-    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_GetOpList</span>(<span class='ident'>lib_handle</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Library</span>) <span class='op'>-&gt;</span> <span class='ident'>TF_Buffer</span>;
+<span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NewStatus</span>() <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>;
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_DeleteStatus</span>(<span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>);
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_SetStatus</span>(<span class='ident'>status</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Status</span>, <span class='ident'>code</span>: <span class='ident'>TF_Code</span>, <span class='ident'>message</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>);
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_GetCode</span>(<span class='ident'>status</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Status</span>) <span class='op'>-&gt;</span> <span class='ident'>TF_Code</span>;
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_Message</span>(<span class='ident'>status</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Status</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>c_char</span>;
+}
+
+<span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> {
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NewTensor</span>(<span class='ident'>datatype</span>: <span class='ident'>TF_DataType</span>, <span class='ident'>dims</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>int64_t</span>, <span class='ident'>ndims</span>: <span class='ident'>c_int</span>,
+                        <span class='ident'>data</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>, <span class='ident'>length</span>: <span class='ident'>size_t</span>,
+                        <span class='ident'>deallocator</span>: <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='kw'>unsafe</span> <span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> <span class='kw'>fn</span>(<span class='ident'>data</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>,
+                                                                 <span class='ident'>length</span>: <span class='ident'>size_t</span>,
+                                                                 <span class='ident'>arg</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>)<span class='op'>&gt;</span>,
+                        <span class='ident'>deallocator_arg</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Tensor</span>;
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_DeleteTensor</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>TF_Tensor</span>);
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_TensorType</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Tensor</span>) <span class='op'>-&gt;</span> <span class='ident'>TF_DataType</span>;
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_NumDims</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Tensor</span>) <span class='op'>-&gt;</span> <span class='ident'>c_int</span>;
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_Dim</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Tensor</span>, <span class='ident'>index</span>: <span class='ident'>c_int</span>) <span class='op'>-&gt;</span> <span class='ident'>int64_t</span>;
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_TensorByteSize</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Tensor</span>) <span class='op'>-&gt;</span> <span class='ident'>size_t</span>;
+    <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>TF_TensorData</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>TF_Tensor</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>;
 }
 </pre>
 </section>

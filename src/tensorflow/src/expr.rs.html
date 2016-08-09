@@ -303,8 +303,31 @@
 <span id="259">259</span>
 <span id="260">260</span>
 <span id="261">261</span>
+<span id="262">262</span>
+<span id="263">263</span>
+<span id="264">264</span>
+<span id="265">265</span>
+<span id="266">266</span>
+<span id="267">267</span>
+<span id="268">268</span>
+<span id="269">269</span>
+<span id="270">270</span>
+<span id="271">271</span>
+<span id="272">272</span>
+<span id="273">273</span>
+<span id="274">274</span>
+<span id="275">275</span>
+<span id="276">276</span>
+<span id="277">277</span>
+<span id="278">278</span>
+<span id="279">279</span>
 </pre><pre class='rust '>
 <span class='comment'>// -*-  indent-tabs-mode:nil; tab-width:2;  -*-</span>
+<span class='doccomment'>//! This module builds computation graphs.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! This module is unfinished.</span>
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>cfg</span>(<span class='ident'>feature</span> <span class='op'>=</span> <span class='string'>&quot;tensorflow_unstable&quot;</span>)]</span>
+
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>convert</span>::<span class='ident'>From</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Debug</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Display</span>;
@@ -316,6 +339,8 @@
 <span class='kw'>use</span> <span class='kw'>super</span>::<span class='ident'>Buffer</span>;
 <span class='kw'>use</span> <span class='kw'>super</span>::<span class='ident'>TensorType</span>;
 
+<span class='doccomment'>/// Denotes operator precedence.</span>
+<span class='doccomment'>/// Used for displaying expressions as strings.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Ord</span>,<span class='ident'>PartialOrd</span>,<span class='ident'>Eq</span>,<span class='ident'>PartialEq</span>,<span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='ident'>OpLevel</span> {
   <span class='ident'>Add</span>,
@@ -326,6 +351,10 @@
 
 <span class='comment'>////////////////////////</span>
 
+<span class='doccomment'>/// A node in an expression tree, which is a thin wrapper around an ExprImpl.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// This is separate from ExprImpl because we want expressions to be wrapped in an Rc,</span>
+<span class='doccomment'>/// and we can&#39;t directly implement std::ops::Add, etc., for Rc&lt;E: ExprImpl&lt;T&gt;&gt;.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Expr</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>TensorType</span><span class='op'>&gt;</span> {
   <span class='ident'>expr</span>: <span class='ident'>Rc</span><span class='op'>&lt;</span><span class='ident'>ExprImpl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;&gt;</span>,
@@ -347,7 +376,10 @@
 
 <span class='comment'>////////////////////////</span>
 
+<span class='doccomment'>/// Trait implemented by all expression types.</span>
+<span class='doccomment'>/// Most users will want to store an Expr instead.</span>
 <span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>ExprImpl</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>TensorType</span><span class='op'>&gt;</span>: <span class='ident'>Display</span> <span class='op'>+</span> <span class='ident'>Debug</span> {
+  <span class='doccomment'>/// Returns the precedence level for this operator.</span>
   <span class='kw'>fn</span> <span class='ident'>op_level</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>OpLevel</span>;
 }
 
@@ -360,7 +392,8 @@
 <span class='comment'>////////////////////////</span>
 
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>impl_bin_op</span> {
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fn_name</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op_level</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>assoc</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> {
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fn_name</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>op_level</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>assoc</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>doc</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> {
+    <span class='attribute'>#[<span class='ident'>doc</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>doc</span>]</span>
     <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>TensorType</span><span class='op'>&gt;</span> {
       <span class='ident'>left</span>: <span class='ident'>Expr</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>,
@@ -422,14 +455,15 @@
   }
 }
 
-<span class='macro'>impl_bin_op</span><span class='macro'>!</span>(<span class='ident'>Add</span>, <span class='ident'>add</span>, <span class='string'>&quot;+&quot;</span>, <span class='ident'>Add</span>, <span class='bool-val'>true</span>);
-<span class='macro'>impl_bin_op</span><span class='macro'>!</span>(<span class='ident'>Sub</span>, <span class='ident'>sub</span>, <span class='string'>&quot;-&quot;</span>, <span class='ident'>Add</span>, <span class='bool-val'>false</span>);
-<span class='macro'>impl_bin_op</span><span class='macro'>!</span>(<span class='ident'>Mul</span>, <span class='ident'>mul</span>, <span class='string'>&quot;*&quot;</span>, <span class='ident'>Mul</span>, <span class='bool-val'>true</span>);
-<span class='macro'>impl_bin_op</span><span class='macro'>!</span>(<span class='ident'>Div</span>, <span class='ident'>div</span>, <span class='string'>&quot;/&quot;</span>, <span class='ident'>Mul</span>, <span class='bool-val'>false</span>);
-<span class='macro'>impl_bin_op</span><span class='macro'>!</span>(<span class='ident'>Rem</span>, <span class='ident'>rem</span>, <span class='string'>&quot;%&quot;</span>, <span class='ident'>Mul</span>, <span class='bool-val'>false</span>);
+<span class='macro'>impl_bin_op</span><span class='macro'>!</span>(<span class='ident'>Add</span>, <span class='ident'>add</span>, <span class='string'>&quot;+&quot;</span>, <span class='ident'>Add</span>, <span class='boolvalue'>true</span>, <span class='string'>&quot;Expression resulting from adding two subexpressions.&quot;</span>);
+<span class='macro'>impl_bin_op</span><span class='macro'>!</span>(<span class='ident'>Sub</span>, <span class='ident'>sub</span>, <span class='string'>&quot;-&quot;</span>, <span class='ident'>Add</span>, <span class='boolvalue'>false</span>, <span class='string'>&quot;Expression resulting from subtracting two subexpressions.&quot;</span>);
+<span class='macro'>impl_bin_op</span><span class='macro'>!</span>(<span class='ident'>Mul</span>, <span class='ident'>mul</span>, <span class='string'>&quot;*&quot;</span>, <span class='ident'>Mul</span>, <span class='boolvalue'>true</span>, <span class='string'>&quot;Expression resulting from multiplying two subexpressions.&quot;</span>);
+<span class='macro'>impl_bin_op</span><span class='macro'>!</span>(<span class='ident'>Div</span>, <span class='ident'>div</span>, <span class='string'>&quot;/&quot;</span>, <span class='ident'>Mul</span>, <span class='boolvalue'>false</span>, <span class='string'>&quot;Expression resulting from dividing two subexpressions.&quot;</span>);
+<span class='macro'>impl_bin_op</span><span class='macro'>!</span>(<span class='ident'>Rem</span>, <span class='ident'>rem</span>, <span class='string'>&quot;%&quot;</span>, <span class='ident'>Mul</span>, <span class='boolvalue'>false</span>, <span class='string'>&quot;Expression resulting from taking a modulus.&quot;</span>);
 
 <span class='comment'>////////////////////////</span>
 
+<span class='doccomment'>/// Expression resulting from negation of an expression.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Neg</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>TensorType</span><span class='op'>&gt;</span> {
   <span class='ident'>expr</span>: <span class='ident'>Expr</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>,
@@ -466,6 +500,7 @@
 
 <span class='comment'>////////////////////////</span>
 
+<span class='doccomment'>/// Expression for a variable.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Variable</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>TensorType</span><span class='op'>&gt;</span> {
   <span class='ident'>initial_value</span>: <span class='ident'>Buffer</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>,
@@ -497,6 +532,7 @@
 
 <span class='comment'>////////////////////////</span>
 
+<span class='doccomment'>/// Expression for a placeholder.</span>
 <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Debug</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Placeholder</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>TensorType</span><span class='op'>&gt;</span> {
   <span class='ident'>shape</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>u64</span><span class='op'>&gt;</span>,

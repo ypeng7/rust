@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["Buffer","Fixed-length heap-allocated vector. This is basically a `Box<[T]>`, except that that type can't actually be constructed. Furthermore, `[T; N]` can't be constructed if N is not a compile-time constant."]]});

@@ -1,0 +1,4 @@
+<!DOCTYPE html>
+<link rel='canonical' href='${URL}'>
+<meta http-equiv='refresh' content='0; url=${URL}'>
+<script>window.location='${URL}'</script>
