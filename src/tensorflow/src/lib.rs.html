@@ -868,16 +868,87 @@
 <span id="824">824</span>
 <span id="825">825</span>
 <span id="826">826</span>
+<span id="827">827</span>
+<span id="828">828</span>
+<span id="829">829</span>
+<span id="830">830</span>
+<span id="831">831</span>
+<span id="832">832</span>
+<span id="833">833</span>
+<span id="834">834</span>
+<span id="835">835</span>
+<span id="836">836</span>
+<span id="837">837</span>
+<span id="838">838</span>
+<span id="839">839</span>
+<span id="840">840</span>
+<span id="841">841</span>
+<span id="842">842</span>
+<span id="843">843</span>
+<span id="844">844</span>
+<span id="845">845</span>
+<span id="846">846</span>
+<span id="847">847</span>
+<span id="848">848</span>
+<span id="849">849</span>
+<span id="850">850</span>
+<span id="851">851</span>
+<span id="852">852</span>
+<span id="853">853</span>
+<span id="854">854</span>
+<span id="855">855</span>
+<span id="856">856</span>
+<span id="857">857</span>
+<span id="858">858</span>
+<span id="859">859</span>
+<span id="860">860</span>
+<span id="861">861</span>
+<span id="862">862</span>
+<span id="863">863</span>
+<span id="864">864</span>
+<span id="865">865</span>
+<span id="866">866</span>
+<span id="867">867</span>
+<span id="868">868</span>
+<span id="869">869</span>
+<span id="870">870</span>
+<span id="871">871</span>
+<span id="872">872</span>
+<span id="873">873</span>
+<span id="874">874</span>
+<span id="875">875</span>
+<span id="876">876</span>
+<span id="877">877</span>
+<span id="878">878</span>
+<span id="879">879</span>
+<span id="880">880</span>
+<span id="881">881</span>
+<span id="882">882</span>
+<span id="883">883</span>
+<span id="884">884</span>
+<span id="885">885</span>
+<span id="886">886</span>
+<span id="887">887</span>
+<span id="888">888</span>
+<span id="889">889</span>
+<span id="890">890</span>
+<span id="891">891</span>
+<span id="892">892</span>
+<span id="893">893</span>
+<span id="894">894</span>
+<span id="895">895</span>
+<span id="896">896</span>
+<span id="897">897</span>
 </pre><pre class='rust '>
 <span class='comment'>// -*-  indent-tabs-mode:nil; tab-width:2;  -*-</span>
 <span class='doccomment'>//! This crate provides Rust bindings for the [TensorFlow](https://www.tensorflow.org) machine learning library.</span>
 
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>libc</span>;
-<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>num</span>;
+<span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>num_complex</span>;
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>tensorflow_sys</span> <span class='kw'>as</span> <span class='ident'>tf</span>;
 
 <span class='kw'>use</span> <span class='ident'>libc</span>::{<span class='ident'>c_char</span>, <span class='ident'>c_int</span>, <span class='ident'>c_uint</span>, <span class='ident'>c_void</span>, <span class='ident'>size_t</span>};
-<span class='kw'>use</span> <span class='ident'>num</span>::<span class='ident'>Complex</span>;
+<span class='kw'>use</span> <span class='ident'>num_complex</span>::<span class='ident'>Complex</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>error</span>::<span class='ident'>Error</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ffi</span>::<span class='ident'>CStr</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ffi</span>::<span class='ident'>CString</span>;
@@ -892,8 +963,29 @@
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::<span class='ident'>DerefMut</span>;
 <span class='kw'>use</span> <span class='ident'>std</span>::<span class='ident'>ops</span>::<span class='ident'>Drop</span>;
 
+<span class='comment'>////////////////////////</span>
+
+<span class='doccomment'>/// Will panic if `msg` contains an embedded 0 byte.</span>
+<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>invalid_arg</span> {
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fmt</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> {
+    <span class='ident'>Status</span>::<span class='ident'>new_set</span>(<span class='ident'>Code</span>::<span class='ident'>InvalidArgument</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fmt</span>).<span class='ident'>unwrap</span>()
+  };
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fmt</span>:<span class='ident'>expr</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> ({
+    <span class='kw'>let</span> <span class='ident'>msg</span> <span class='op'>=</span> <span class='macro'>format</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fmt</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>)<span class='op'>*</span>);
+    <span class='ident'>Status</span>::<span class='ident'>new_set</span>(<span class='ident'>Code</span>::<span class='ident'>InvalidArgument</span>, <span class='kw-2'>&amp;</span><span class='ident'>msg</span>).<span class='ident'>unwrap</span>()
+  });
+}
+
+<span class='comment'>////////////////////////</span>
+
 <span class='kw'>mod</span> <span class='ident'>buffer</span>;
 <span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>buffer</span>::<span class='ident'>Buffer</span>;
+
+<span class='kw'>mod</span> <span class='ident'>graph</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>graph</span>::<span class='op'>*</span>;
+
+<span class='kw'>mod</span> <span class='ident'>session</span>;
+<span class='kw'>pub</span> <span class='kw'>use</span> <span class='ident'>session</span>::<span class='op'>*</span>;
 
 <span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>expr</span>;
 
@@ -937,21 +1029,8 @@
 
 <span class='comment'>////////////////////////</span>
 
-<span class='doccomment'>/// Will panic if `msg` contains an embedded 0 byte.</span>
-<span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>invalid_arg</span> {
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fmt</span>:<span class='ident'>expr</span>) <span class='op'>=&gt;</span> {
-    <span class='ident'>Status</span>::<span class='ident'>new_set</span>(<span class='ident'>Code</span>::<span class='ident'>InvalidArgument</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fmt</span>).<span class='ident'>unwrap</span>()
-  };
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fmt</span>:<span class='ident'>expr</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>:<span class='ident'>tt</span>)<span class='op'>*</span>) <span class='op'>=&gt;</span> ({
-    <span class='kw'>let</span> <span class='ident'>msg</span> <span class='op'>=</span> <span class='macro'>format</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>fmt</span>, $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>arg</span>)<span class='op'>*</span>);
-    <span class='ident'>Status</span>::<span class='ident'>new_set</span>(<span class='ident'>Code</span>::<span class='ident'>InvalidArgument</span>, <span class='kw-2'>&amp;</span><span class='ident'>msg</span>).<span class='ident'>unwrap</span>()
-  });
-}
-
-<span class='comment'>////////////////////////</span>
-
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>c_enum</span> {
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>doc</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>enum_name</span>:<span class='ident'>ident</span> { $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>:<span class='ident'>ident</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>num</span>:<span class='ident'>expr</span>),<span class='op'>*</span> }) <span class='op'>=&gt;</span> {
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>doc</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>c_name</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>enum_name</span>:<span class='ident'>ident</span> { $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>:<span class='ident'>ident</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>num</span>:<span class='ident'>expr</span>),<span class='op'>*</span> }) <span class='op'>=&gt;</span> {
     <span class='attribute'>#[<span class='ident'>doc</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>doc</span>]</span>
     <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>PartialEq</span>,<span class='ident'>Eq</span>,<span class='ident'>PartialOrd</span>,<span class='ident'>Ord</span>,<span class='ident'>Debug</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>enum</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>enum_name</span> {
@@ -975,6 +1054,18 @@
           $(<span class='kw-2'>&amp;</span><span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>enum_name</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span> <span class='op'>=&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>num</span>),<span class='op'>*</span>
         }
       }
+
+      <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>dead_code</span>)]</span>
+      <span class='kw'>fn</span> <span class='ident'>to_c</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>tf</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>c_name</span> {
+        <span class='kw'>unsafe</span> {
+          ::<span class='ident'>std</span>::<span class='ident'>mem</span>::<span class='ident'>transmute</span>(<span class='self'>self</span>.<span class='ident'>to_int</span>())
+        }
+      }
+
+      <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>dead_code</span>)]</span>
+      <span class='kw'>fn</span> <span class='ident'>from_c</span>(<span class='ident'>value</span>: <span class='ident'>tf</span>::<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>c_name</span>) <span class='op'>-&gt;</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>enum_name</span> {
+        <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>enum_name</span>::<span class='ident'>from_int</span>(<span class='ident'>value</span> <span class='kw'>as</span> <span class='ident'>c_uint</span>)
+      }
     }
 
     <span class='kw'>impl</span> ::<span class='ident'>std</span>::<span class='ident'>fmt</span>::<span class='ident'>Display</span> <span class='kw'>for</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>enum_name</span> {
@@ -986,14 +1077,14 @@
       }
     }
   };
-  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>doc</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>enum_name</span>:<span class='ident'>ident</span> { $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>:<span class='ident'>ident</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>num</span>:<span class='ident'>expr</span>,)<span class='op'>*</span> }) <span class='op'>=&gt;</span> {
-    <span class='macro'>c_enum</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>doc</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>enum_name</span> { $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>num</span>),<span class='op'>*</span> });
+  (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>doc</span>:<span class='ident'>expr</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>c_name</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>enum_name</span>:<span class='ident'>ident</span> { $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span>:<span class='ident'>ident</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>num</span>:<span class='ident'>expr</span>,)<span class='op'>*</span> }) <span class='op'>=&gt;</span> {
+    <span class='macro'>c_enum</span><span class='macro'>!</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>doc</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>c_name</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>enum_name</span> { $(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>name</span> <span class='op'>=</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>num</span>),<span class='op'>*</span> });
   }
 }
 
 <span class='comment'>////////////////////////</span>
 
-<span class='macro'>c_enum</span><span class='macro'>!</span>(<span class='string'>&quot;Error values that can be returned.&quot;</span>, <span class='ident'>Code</span> {
+<span class='macro'>c_enum</span><span class='macro'>!</span>(<span class='string'>&quot;Error values that can be returned.&quot;</span>, <span class='ident'>TF_Code</span>, <span class='ident'>Code</span> {
   <span class='prelude-val'>Ok</span> <span class='op'>=</span> <span class='number'>0</span>,
   <span class='ident'>Cancelled</span> <span class='op'>=</span> <span class='number'>1</span>,
   <span class='ident'>Unknown</span> <span class='op'>=</span> <span class='number'>2</span>,
@@ -1015,7 +1106,7 @@
 
 <span class='comment'>////////////////////////</span>
 
-<span class='macro'>c_enum</span><span class='macro'>!</span>(<span class='string'>&quot;Type of a single tensor element.&quot;</span>, <span class='ident'>DataType</span> {
+<span class='macro'>c_enum</span><span class='macro'>!</span>(<span class='string'>&quot;Type of a single tensor element.&quot;</span>, <span class='ident'>TF_DataType</span>, <span class='ident'>DataType</span> {
   <span class='ident'>Float</span> <span class='op'>=</span> <span class='number'>1</span>,
   <span class='ident'>Double</span> <span class='op'>=</span> <span class='number'>2</span>,
   <span class='ident'>Int32</span> <span class='op'>=</span> <span class='number'>3</span>,
@@ -1079,7 +1170,7 @@
   <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>set</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>code</span>: <span class='ident'>Code</span>, <span class='ident'>msg</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>std</span>::<span class='ident'>result</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='ident'>NulError</span><span class='op'>&gt;</span> {
     <span class='kw'>let</span> <span class='ident'>message</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>CString</span>::<span class='ident'>new</span>(<span class='ident'>msg</span>));
     <span class='kw'>unsafe</span> {
-      <span class='ident'>tf</span>::<span class='ident'>TF_SetStatus</span>(<span class='self'>self</span>.<span class='ident'>inner</span>, <span class='ident'>mem</span>::<span class='ident'>transmute</span>(<span class='ident'>code</span>.<span class='ident'>to_int</span>()), <span class='ident'>message</span>.<span class='ident'>as_ptr</span>());
+      <span class='ident'>tf</span>::<span class='ident'>TF_SetStatus</span>(<span class='self'>self</span>.<span class='ident'>inner</span>, <span class='ident'>code</span>.<span class='ident'>to_c</span>(), <span class='ident'>message</span>.<span class='ident'>as_ptr</span>());
     }
     <span class='prelude-val'>Ok</span>(())
   }
@@ -1182,10 +1273,13 @@
 <span class='comment'>////////////////////////</span>
 
 <span class='doccomment'>/// Manages a single graph and execution.</span>
+<span class='attribute'>#[<span class='ident'>deprecated</span>(<span class='ident'>note</span><span class='op'>=</span><span class='string'>&quot;Use SessionWithGraph instead.&quot;</span>)]</span>
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>deprecated</span>)]</span>
 <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Session</span> {
   <span class='ident'>inner</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>tf</span>::<span class='ident'>TF_Session</span>,
 }
 
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>deprecated</span>)]</span>
 <span class='kw'>impl</span> <span class='ident'>Session</span> {
   <span class='doccomment'>/// Creates a session.</span>
   <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new</span>(<span class='ident'>options</span>: <span class='kw-2'>&amp;</span><span class='ident'>SessionOptions</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='self'>Self</span><span class='op'>&gt;</span> {
@@ -1209,7 +1303,7 @@
     <span class='ident'>status</span>.<span class='ident'>as_result</span>()
   }
 
-  <span class='doccomment'>/// Treat `proto` as a serialized `GraphDef` and add the nodes in that `GraphDef` to the graph for the session.</span>
+  <span class='doccomment'>/// Treat `proto` as a serialized `GraphDef` and add the operations in that `GraphDef` to the graph for the session.</span>
   <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>extend_graph</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>proto</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>u8</span>]) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span>()<span class='op'>&gt;</span> {
     <span class='kw'>let</span> <span class='ident'>status</span> <span class='op'>=</span> <span class='ident'>Status</span>::<span class='ident'>new</span>();
     <span class='kw'>unsafe</span> {
@@ -1262,6 +1356,7 @@
   }
 }
 
+<span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>deprecated</span>)]</span>
 <span class='kw'>impl</span> <span class='ident'>Drop</span> <span class='kw'>for</span> <span class='ident'>Session</span> {
   <span class='kw'>fn</span> <span class='ident'>drop</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
     <span class='kw'>let</span> <span class='ident'>status</span> <span class='op'>=</span> <span class='ident'>Status</span>::<span class='ident'>new</span>();
@@ -1312,7 +1407,7 @@
   }
 
   <span class='doccomment'>/// Adds an input to be fed to the graph.</span>
-  <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_input</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>name</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>tensor</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;l</span> <span class='ident'>Tensor</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>std</span>::<span class='ident'>result</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='ident'>NulError</span><span class='op'>&gt;</span> {
+  <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_input</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>TensorType</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>name</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>, <span class='ident'>tensor</span>: <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;l</span> <span class='ident'>Tensor</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='ident'>std</span>::<span class='ident'>result</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='ident'>NulError</span><span class='op'>&gt;</span> {
     <span class='kw'>let</span> <span class='ident'>c_string</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>CString</span>::<span class='ident'>new</span>(<span class='ident'>name</span>));
     <span class='self'>self</span>.<span class='ident'>input_name_ptrs</span>.<span class='ident'>push</span>(<span class='ident'>c_string</span>.<span class='ident'>as_ptr</span>());
     <span class='self'>self</span>.<span class='ident'>input_name_c_strings</span>.<span class='ident'>push</span>(<span class='ident'>c_string</span>);
@@ -1343,7 +1438,7 @@
     <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>output_tensors</span>[<span class='ident'>output_idx</span>].<span class='ident'>is_null</span>() {
       <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='ident'>Status</span>::<span class='ident'>new_set</span>(<span class='ident'>Code</span>::<span class='ident'>Unavailable</span>,
         <span class='string'>&quot;Output not available. Either it was already taken, or this step \
-        has not been sucessfully run yet.&quot;</span>).<span class='ident'>unwrap</span>());
+        has not been successfully run yet.&quot;</span>).<span class='ident'>unwrap</span>());
     }
     <span class='kw'>let</span> <span class='ident'>actual_data_type</span> <span class='op'>=</span> <span class='self'>self</span>.<span class='ident'>get_output_data_type</span>(<span class='ident'>output_idx</span>).<span class='ident'>unwrap</span>();
     <span class='kw'>if</span> <span class='ident'>actual_data_type</span> <span class='op'>!=</span> <span class='ident'>T</span>::<span class='ident'>data_type</span>() {
@@ -1359,7 +1454,7 @@
     <span class='prelude-val'>Ok</span>(<span class='ident'>tensor</span>)
   }
 
-  <span class='doccomment'>/// Adds a target node to be executed when running the graph.</span>
+  <span class='doccomment'>/// Adds a target operation to be executed when running the graph.</span>
   <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>add_target</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>name</span>: <span class='kw-2'>&amp;</span><span class='ident'>str</span>) <span class='op'>-&gt;</span> <span class='ident'>std</span>::<span class='ident'>result</span>::<span class='prelude-ty'>Result</span><span class='op'>&lt;</span>(), <span class='ident'>NulError</span><span class='op'>&gt;</span> {
     <span class='kw'>let</span> <span class='ident'>c_string</span> <span class='op'>=</span> <span class='macro'>try</span><span class='macro'>!</span>(<span class='ident'>CString</span>::<span class='ident'>new</span>(<span class='ident'>name</span>));
     <span class='self'>self</span>.<span class='ident'>target_name_ptrs</span>.<span class='ident'>push</span>(<span class='ident'>c_string</span>.<span class='ident'>as_ptr</span>());
@@ -1370,6 +1465,7 @@
   <span class='doccomment'>/// Retuns the type of the tensor given an index.</span>
   <span class='doccomment'>/// Returns `None` if the index is out of range or the output is not yet available.</span>
   <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>get_output_data_type</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>, <span class='ident'>output_idx</span>: <span class='ident'>usize</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='ident'>DataType</span><span class='op'>&gt;</span> {
+    <span class='comment'>// TODO: rename to output_data_type()</span>
     <span class='kw'>if</span> <span class='ident'>output_idx</span> <span class='op'>&gt;=</span> <span class='self'>self</span>.<span class='ident'>output_tensors</span>.<span class='ident'>len</span>() {
       <span class='kw'>return</span> <span class='prelude-val'>None</span>;
     }
@@ -1377,18 +1473,19 @@
       <span class='kw'>return</span> <span class='prelude-val'>None</span>;
     }
     <span class='kw'>unsafe</span> {
-      <span class='prelude-val'>Some</span>(<span class='ident'>DataType</span>::<span class='ident'>from_int</span>(<span class='ident'>mem</span>::<span class='ident'>transmute</span>(<span class='ident'>tf</span>::<span class='ident'>TF_TensorType</span>(<span class='self'>self</span>.<span class='ident'>output_tensors</span>[<span class='ident'>output_idx</span>]))))
+      <span class='prelude-val'>Some</span>(<span class='ident'>DataType</span>::<span class='ident'>from_c</span>(<span class='ident'>tf</span>::<span class='ident'>TF_TensorType</span>(<span class='self'>self</span>.<span class='ident'>output_tensors</span>[<span class='ident'>output_idx</span>])))
     }
   }
 
   <span class='kw'>fn</span> <span class='ident'>drop_output_tensors</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
-    <span class='kw'>for</span> <span class='kw-2'>&amp;</span><span class='ident'>tensor</span> <span class='kw'>in</span> <span class='kw-2'>&amp;</span><span class='self'>self</span>.<span class='ident'>output_tensors</span> {
+    <span class='kw'>for</span> <span class='kw-2'>mut</span> <span class='ident'>tensor</span> <span class='kw'>in</span> <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>.<span class='ident'>output_tensors</span> {
       <span class='comment'>// TODO: Is TF_DeleteTensor NULL safe?</span>
       <span class='kw'>if</span> <span class='op'>!</span><span class='ident'>tensor</span>.<span class='ident'>is_null</span>() {
         <span class='kw'>unsafe</span> {
-          <span class='ident'>tf</span>::<span class='ident'>TF_DeleteTensor</span>(<span class='ident'>tensor</span>);
+          <span class='ident'>tf</span>::<span class='ident'>TF_DeleteTensor</span>(<span class='op'>*</span><span class='ident'>tensor</span>);
         }
       }
+      <span class='op'>*</span><span class='ident'>tensor</span> <span class='op'>=</span> <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>();
     }
   }
 }
@@ -1407,7 +1504,11 @@
 <span class='comment'>////////////////////////</span>
 
 <span class='doccomment'>/// A Rust type that maps to a `DataType`.</span>
-<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>TensorType</span>: <span class='ident'>Default</span> <span class='op'>+</span> <span class='ident'>Clone</span> <span class='op'>+</span> <span class='ident'>Display</span> <span class='op'>+</span> <span class='ident'>Debug</span> <span class='op'>+</span> <span class='lifetime'>&#39;static</span> {
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// Currently, all implementors must *not* implement Drop (or transitively contain</span>
+<span class='doccomment'>/// anything that does) and must be bit-for-bit compatible with the corresponding C</span>
+<span class='doccomment'>/// type. Clients must not implement this trait.</span>
+<span class='kw'>pub</span> <span class='kw'>trait</span> <span class='ident'>TensorType</span>: <span class='ident'>Default</span> <span class='op'>+</span> <span class='ident'>Clone</span> <span class='op'>+</span> <span class='ident'>Copy</span> <span class='op'>+</span> <span class='ident'>Display</span> <span class='op'>+</span> <span class='ident'>Debug</span> <span class='op'>+</span> <span class='lifetime'>&#39;static</span> {
   <span class='comment'>// TODO: Use associated constants when/if available</span>
   <span class='doccomment'>/// Returns the DataType that corresponds to this type.</span>
   <span class='kw'>fn</span> <span class='ident'>data_type</span>() <span class='op'>-&gt;</span> <span class='ident'>DataType</span>;
@@ -1438,7 +1539,7 @@
 
 <span class='macro'>macro_rules</span><span class='macro'>!</span> <span class='ident'>q_type</span> {
   (<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rust_type</span>:<span class='ident'>ident</span>, <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>q_type</span>:<span class='ident'>ident</span>) <span class='op'>=&gt;</span> {
-    <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>,<span class='ident'>Default</span>,<span class='ident'>Debug</span>,<span class='ident'>Eq</span>,<span class='ident'>PartialEq</span>,<span class='ident'>Ord</span>,<span class='ident'>PartialOrd</span>)]</span>
+    <span class='attribute'>#[<span class='ident'>derive</span>(<span class='ident'>Clone</span>,<span class='ident'>Copy</span>,<span class='ident'>Default</span>,<span class='ident'>Debug</span>,<span class='ident'>Eq</span>,<span class='ident'>PartialEq</span>,<span class='ident'>Ord</span>,<span class='ident'>PartialOrd</span>)]</span>
     <span class='kw'>pub</span> <span class='kw'>struct</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>q_type</span>(<span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>rust_type</span>);
 
     <span class='kw'>impl</span> <span class='ident'>Display</span> <span class='kw'>for</span> <span class='macro-nonterminal'>$</span><span class='macro-nonterminal'>q_type</span> {
@@ -1477,13 +1578,18 @@
 <span class='doccomment'>/// ```</span>
 <span class='doccomment'>///</span>
 <span class='doccomment'>/// The layout for strings is currently undefined.</span>
-<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Tensor</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
+<span class='kw'>pub</span> <span class='kw'>struct</span> <span class='ident'>Tensor</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>TensorType</span><span class='op'>&gt;</span> {
   <span class='ident'>inner</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>tf</span>::<span class='ident'>TF_Tensor</span>,
   <span class='ident'>data</span>: <span class='ident'>Buffer</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>,
   <span class='ident'>dims</span>: <span class='ident'>Vec</span><span class='op'>&lt;</span><span class='ident'>u64</span><span class='op'>&gt;</span>,
+  <span class='ident'>owned</span>: <span class='ident'>bool</span>,
 }
 
 <span class='kw'>unsafe</span> <span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> <span class='kw'>fn</span> <span class='ident'>noop_deallocator</span>(_: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>, _: <span class='ident'>size_t</span>, _: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>) <span class='op'>-&gt;</span> () {}
+
+<span class='kw'>unsafe</span> <span class='kw'>extern</span> <span class='string'>&quot;C&quot;</span> <span class='kw'>fn</span> <span class='ident'>deallocator</span>(_: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>, _: <span class='ident'>size_t</span>, <span class='ident'>buffer</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>c_void</span>) <span class='op'>-&gt;</span> () {
+  <span class='ident'>tf</span>::<span class='ident'>TF_DeleteBuffer</span>(<span class='ident'>buffer</span> <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>tf</span>::<span class='ident'>TF_Buffer</span>);
+}
 
 <span class='comment'>// TODO: Replace with Iterator::product once that&#39;s stable</span>
 <span class='kw'>fn</span> <span class='ident'>product</span>(<span class='ident'>values</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>u64</span>]) <span class='op'>-&gt;</span> <span class='ident'>u64</span> {
@@ -1508,25 +1614,29 @@
   }
 
   <span class='doccomment'>/// Creates a new tensor from existing data.</span>
-  <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new_with_buffer</span>(<span class='ident'>dims</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>u64</span>], <span class='ident'>data</span>: <span class='ident'>Buffer</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='self'>Self</span><span class='op'>&gt;</span> {
+  <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>new_with_buffer</span>(<span class='ident'>dims</span>: <span class='kw-2'>&amp;</span>[<span class='ident'>u64</span>], <span class='kw-2'>mut</span> <span class='ident'>data</span>: <span class='ident'>Buffer</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Result</span><span class='op'>&lt;</span><span class='self'>Self</span><span class='op'>&gt;</span> {
     <span class='kw'>let</span> <span class='ident'>total</span> <span class='op'>=</span> <span class='ident'>product</span>(<span class='ident'>dims</span>);
     <span class='kw'>if</span> <span class='ident'>total</span> <span class='op'>!=</span> <span class='ident'>data</span>.<span class='ident'>len</span>() <span class='kw'>as</span> <span class='ident'>u64</span> {
       <span class='kw'>return</span> <span class='prelude-val'>Err</span>(<span class='macro'>invalid_arg</span><span class='macro'>!</span>(<span class='string'>&quot;Dimensions {:?} do not match buffer length {}&quot;</span>, <span class='ident'>dims</span>, <span class='ident'>data</span>.<span class='ident'>len</span>()));
     }
-    <span class='kw'>let</span> <span class='ident'>inner</span> <span class='op'>=</span> <span class='kw'>unsafe</span> {
-      <span class='ident'>tf</span>::<span class='ident'>TF_NewTensor</span>(<span class='ident'>mem</span>::<span class='ident'>transmute</span>(<span class='ident'>T</span>::<span class='ident'>data_type</span>().<span class='ident'>to_int</span>()),
-                       <span class='ident'>dims</span>.<span class='ident'>as_ptr</span>() <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> _,
-                       <span class='ident'>dims</span>.<span class='ident'>len</span>() <span class='kw'>as</span> <span class='ident'>c_int</span>,
-                       <span class='ident'>data</span>.<span class='ident'>as_ptr</span>() <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> _,
-                       <span class='ident'>data</span>.<span class='ident'>len</span>(),
-                       <span class='prelude-val'>Some</span>(<span class='ident'>noop_deallocator</span>),
-                       <span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>())
-    };
-    <span class='prelude-val'>Ok</span>(<span class='ident'>Tensor</span> {
-      <span class='ident'>inner</span>: <span class='ident'>inner</span>,
-      <span class='ident'>data</span>: <span class='ident'>data</span>,
-      <span class='ident'>dims</span>: <span class='ident'>Vec</span>::<span class='ident'>from</span>(<span class='ident'>dims</span>),
-    })
+    <span class='kw'>unsafe</span> {
+      <span class='comment'>// Be careful.  TF_NewTensor may copy the data and deallocate the original buffer.</span>
+      <span class='kw'>let</span> <span class='ident'>inner</span> <span class='op'>=</span> <span class='ident'>tf</span>::<span class='ident'>TF_NewTensor</span>(
+        <span class='ident'>T</span>::<span class='ident'>data_type</span>().<span class='ident'>to_c</span>(),
+        <span class='ident'>dims</span>.<span class='ident'>as_ptr</span>() <span class='kw'>as</span> <span class='op'>*</span><span class='kw'>const</span> _,
+        <span class='ident'>dims</span>.<span class='ident'>len</span>() <span class='kw'>as</span> <span class='ident'>c_int</span>,
+        <span class='ident'>data</span>.<span class='ident'>as_ptr</span>() <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> _,
+        <span class='ident'>data</span>.<span class='ident'>len</span>() <span class='op'>*</span> <span class='ident'>mem</span>::<span class='ident'>size_of</span>::<span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>(),
+        <span class='prelude-val'>Some</span>(<span class='kw'>if</span> <span class='ident'>data</span>.<span class='ident'>is_owned</span>() {<span class='ident'>deallocator</span>} <span class='kw'>else</span> {<span class='ident'>noop_deallocator</span>}),
+        <span class='kw'>if</span> <span class='ident'>data</span>.<span class='ident'>is_owned</span>() {<span class='ident'>data</span>.<span class='ident'>inner_mut</span>() <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> _} <span class='kw'>else</span> {<span class='ident'>std</span>::<span class='ident'>ptr</span>::<span class='ident'>null_mut</span>()});
+      <span class='ident'>data</span>.<span class='ident'>set_owned</span>(<span class='boolvalue'>false</span>);
+      <span class='prelude-val'>Ok</span>(<span class='ident'>Tensor</span> {
+        <span class='ident'>inner</span>: <span class='ident'>inner</span>,
+        <span class='ident'>data</span>: <span class='ident'>Buffer</span>::<span class='ident'>from_ptr</span>(<span class='ident'>tf</span>::<span class='ident'>TF_TensorData</span>(<span class='ident'>inner</span>) <span class='kw'>as</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>T</span>, <span class='ident'>total</span> <span class='kw'>as</span> <span class='ident'>usize</span>),
+        <span class='ident'>dims</span>: <span class='ident'>Vec</span>::<span class='ident'>from</span>(<span class='ident'>dims</span>),
+        <span class='ident'>owned</span>: <span class='boolvalue'>true</span>,
+      })
+    }
   }
 
   <span class='doccomment'>/// Returns the tensor&#39;s data.</span>
@@ -1546,7 +1656,7 @@
 
   <span class='comment'>// Wraps a TF_Tensor. Returns None if types don&#39;t match.</span>
   <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>from_tf_tensor</span>(<span class='ident'>tensor</span>: <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>tf</span>::<span class='ident'>TF_Tensor</span>) <span class='op'>-&gt;</span> <span class='prelude-ty'>Option</span><span class='op'>&lt;</span><span class='self'>Self</span><span class='op'>&gt;</span> {
-    <span class='kw'>if</span> <span class='ident'>DataType</span>::<span class='ident'>from_int</span>(<span class='ident'>mem</span>::<span class='ident'>transmute</span>(<span class='ident'>tf</span>::<span class='ident'>TF_TensorType</span>(<span class='ident'>tensor</span>))) <span class='op'>!=</span> <span class='ident'>T</span>::<span class='ident'>data_type</span>() {
+    <span class='kw'>if</span> <span class='ident'>DataType</span>::<span class='ident'>from_c</span>(<span class='ident'>tf</span>::<span class='ident'>TF_TensorType</span>(<span class='ident'>tensor</span>)) <span class='op'>!=</span> <span class='ident'>T</span>::<span class='ident'>data_type</span>() {
       <span class='kw'>return</span> <span class='prelude-val'>None</span>;
     }
     <span class='kw'>let</span> <span class='kw-2'>mut</span> <span class='ident'>dims</span> <span class='op'>=</span> <span class='ident'>Vec</span>::<span class='ident'>with_capacity</span>(<span class='ident'>tf</span>::<span class='ident'>TF_NumDims</span>(<span class='ident'>tensor</span>) <span class='kw'>as</span> <span class='ident'>usize</span>);
@@ -1557,20 +1667,30 @@
     <span class='prelude-val'>Some</span>(<span class='ident'>Tensor</span> {
       <span class='ident'>inner</span>: <span class='ident'>tensor</span>,
       <span class='ident'>data</span>: <span class='ident'>data</span>,
-      <span class='ident'>dims</span>: <span class='ident'>dims</span>
+      <span class='ident'>dims</span>: <span class='ident'>dims</span>,
+      <span class='ident'>owned</span>: <span class='boolvalue'>true</span>,
     })
+  }
+
+  <span class='doccomment'>/// The caller is responsible for deleting the tensor.</span>
+  <span class='kw'>unsafe</span> <span class='kw'>fn</span> <span class='ident'>into_ptr</span>(<span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>tf</span>::<span class='ident'>TF_Tensor</span> {
+    <span class='comment'>// This flag is used by drop.</span>
+    <span class='self'>self</span>.<span class='ident'>owned</span> <span class='op'>=</span> <span class='boolvalue'>false</span>;
+    <span class='self'>self</span>.<span class='ident'>inner</span>
   }
 }
 
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='ident'>Drop</span> <span class='kw'>for</span> <span class='ident'>Tensor</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>TensorType</span><span class='op'>&gt;</span> <span class='ident'>Drop</span> <span class='kw'>for</span> <span class='ident'>Tensor</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
   <span class='kw'>fn</span> <span class='ident'>drop</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) {
-    <span class='kw'>unsafe</span> {
-      <span class='ident'>tf</span>::<span class='ident'>TF_DeleteTensor</span>(<span class='self'>self</span>.<span class='ident'>inner</span>);
+    <span class='kw'>if</span> <span class='self'>self</span>.<span class='ident'>owned</span> {
+      <span class='kw'>unsafe</span> {
+        <span class='ident'>tf</span>::<span class='ident'>TF_DeleteTensor</span>(<span class='self'>self</span>.<span class='ident'>inner</span>);
+      }
     }
   }
 }
 
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='ident'>Deref</span> <span class='kw'>for</span> <span class='ident'>Tensor</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>TensorType</span><span class='op'>&gt;</span> <span class='ident'>Deref</span> <span class='kw'>for</span> <span class='ident'>Tensor</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
   <span class='kw'>type</span> <span class='ident'>Target</span> <span class='op'>=</span> <span class='ident'>Buffer</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span>;
 
   <span class='attribute'>#[<span class='ident'>inline</span>]</span>
@@ -1579,7 +1699,7 @@
   }
 }
 
-<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> <span class='ident'>DerefMut</span> <span class='kw'>for</span> <span class='ident'>Tensor</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
+<span class='kw'>impl</span><span class='op'>&lt;</span><span class='ident'>T</span>: <span class='ident'>TensorType</span><span class='op'>&gt;</span> <span class='ident'>DerefMut</span> <span class='kw'>for</span> <span class='ident'>Tensor</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
   <span class='attribute'>#[<span class='ident'>inline</span>]</span>
   <span class='kw'>fn</span> <span class='ident'>deref_mut</span><span class='op'>&lt;</span><span class='lifetime'>&#39;a</span><span class='op'>&gt;</span>(<span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='kw-2'>&amp;</span><span class='lifetime'>&#39;a</span> <span class='kw-2'>mut</span> <span class='ident'>Buffer</span><span class='op'>&lt;</span><span class='ident'>T</span><span class='op'>&gt;</span> {
     <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>.<span class='ident'>data</span>
@@ -1614,10 +1734,32 @@
 
 <span class='comment'>////////////////////////</span>
 
+<span class='doccomment'>/// This exposes Buffer behavior without making it public.</span>
+<span class='kw'>trait</span> <span class='ident'>BufferTrait</span> {
+  <span class='kw'>fn</span> <span class='ident'>is_owned</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='ident'>bool</span>;
+  <span class='kw'>fn</span> <span class='ident'>set_owned</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>, <span class='ident'>owned</span>: <span class='ident'>bool</span>);
+  <span class='kw'>fn</span> <span class='ident'>inner</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw'>const</span> <span class='ident'>tf</span>::<span class='ident'>TF_Buffer</span>;
+  <span class='kw'>fn</span> <span class='ident'>inner_mut</span>(<span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>tf</span>::<span class='ident'>TF_Buffer</span>;
+}
+
+<span class='doccomment'>/// This exposes Graph behavior without making it public.</span>
+<span class='kw'>trait</span> <span class='ident'>GraphTrait</span> {
+  <span class='kw'>fn</span> <span class='ident'>inner</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>tf</span>::<span class='ident'>TF_Graph</span>;
+}
+
+
+<span class='doccomment'>/// This exposes Operation behavior without making it public.</span>
+<span class='kw'>trait</span> <span class='ident'>OperationTrait</span> {
+  <span class='kw'>fn</span> <span class='ident'>inner</span>(<span class='kw-2'>&amp;</span><span class='self'>self</span>) <span class='op'>-&gt;</span> <span class='op'>*</span><span class='kw-2'>mut</span> <span class='ident'>tf</span>::<span class='ident'>TF_Operation</span>;
+}
+
+<span class='comment'>////////////////////////</span>
+
 <span class='attribute'>#[<span class='ident'>cfg</span>(<span class='ident'>test</span>)]</span>
 <span class='kw'>mod</span> <span class='ident'>tests</span> {
   <span class='kw'>use</span> <span class='kw'>super</span>::<span class='op'>*</span>;
 
+  <span class='attribute'>#[<span class='ident'>allow</span>(<span class='ident'>deprecated</span>)]</span>
   <span class='kw'>fn</span> <span class='ident'>create_session</span>() <span class='op'>-&gt;</span> <span class='ident'>Session</span> {
     <span class='kw'>let</span> <span class='ident'>options</span> <span class='op'>=</span> <span class='ident'>SessionOptions</span>::<span class='ident'>new</span>();
     <span class='kw'>match</span> <span class='ident'>Session</span>::<span class='ident'>new</span>(<span class='kw-2'>&amp;</span><span class='ident'>options</span>) {

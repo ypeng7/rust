@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-0' class='srclink' href='../src/tensorflow_sys/tensorflow-sys/src/lib.rs.html#1-145' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-0' class='srclink' href='../src/tensorflow_sys/tensorflow-sys/src/lib.rs.html#1-376' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>Binding to <a href="https://www.tensorflow.org">TensorFlow</a>.</p>
 </div><h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
 <table><tr><td><code>pub use <a class='enum' href='../tensorflow_sys/enum.TF_Code.html' title='tensorflow_sys::TF_Code'>TF_Code</a>::*;</code></td></tr><tr><td><code>pub use <a class='enum' href='../tensorflow_sys/enum.TF_DataType.html' title='tensorflow_sys::TF_DataType'>TF_DataType</a>::*;</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
@@ -55,6 +55,13 @@
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.TF_Buffer.html'
                                   title='tensorflow_sys::TF_Buffer'>TF_Buffer</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.TF_Port.html'
+                                  title='tensorflow_sys::TF_Port'>TF_Port</a></td>
                            <td class='docblock short'>
                                 
                            </td>
@@ -75,8 +82,29 @@
                            </td>
                        </tr>
                        <tr class=' module-item'>
+                           <td><a class='enum' href='enum.TF_Graph.html'
+                                  title='tensorflow_sys::TF_Graph'>TF_Graph</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
                            <td><a class='enum' href='enum.TF_Library.html'
                                   title='tensorflow_sys::TF_Library'>TF_Library</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.TF_Operation.html'
+                                  title='tensorflow_sys::TF_Operation'>TF_Operation</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.TF_OperationDescription.html'
+                                  title='tensorflow_sys::TF_OperationDescription'>TF_OperationDescription</a></td>
                            <td class='docblock short'>
                                 
                            </td>
@@ -85,12 +113,19 @@
                            <td><a class='enum' href='enum.TF_Session.html'
                                   title='tensorflow_sys::TF_Session'>TF_Session</a></td>
                            <td class='docblock short'>
-                                
+                               [<em class='stab deprecated'>Deprecated</em>] 
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='enum' href='enum.TF_SessionOptions.html'
                                   title='tensorflow_sys::TF_SessionOptions'>TF_SessionOptions</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.TF_SessionWithGraph.html'
+                                  title='tensorflow_sys::TF_SessionWithGraph'>TF_SessionWithGraph</a></td>
                            <td class='docblock short'>
                                 
                            </td>
@@ -111,8 +146,36 @@
                        </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
 <table>
                        <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_AddControlInput.html'
+                                  title='tensorflow_sys::TF_AddControlInput'>TF_AddControlInput</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_AddInput.html'
+                                  title='tensorflow_sys::TF_AddInput'>TF_AddInput</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_AddInputList.html'
+                                  title='tensorflow_sys::TF_AddInputList'>TF_AddInputList</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
                            <td><a class='fn' href='fn.TF_CloseSession.html'
                                   title='tensorflow_sys::TF_CloseSession'>TF_CloseSession</a></td>
+                           <td class='docblock short'>
+                               [<em class='stab deprecated'>Deprecated</em>] 
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_CloseSessionWithGraph.html'
+                                  title='tensorflow_sys::TF_CloseSessionWithGraph'>TF_CloseSessionWithGraph</a></td>
                            <td class='docblock short'>
                                 
                            </td>
@@ -125,15 +188,29 @@
                            </td>
                        </tr>
                        <tr class=' module-item'>
-                           <td><a class='fn' href='fn.TF_DeleteSession.html'
-                                  title='tensorflow_sys::TF_DeleteSession'>TF_DeleteSession</a></td>
+                           <td><a class='fn' href='fn.TF_DeleteGraph.html'
+                                  title='tensorflow_sys::TF_DeleteGraph'>TF_DeleteGraph</a></td>
                            <td class='docblock short'>
                                 
                            </td>
                        </tr>
                        <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_DeleteSession.html'
+                                  title='tensorflow_sys::TF_DeleteSession'>TF_DeleteSession</a></td>
+                           <td class='docblock short'>
+                               [<em class='stab deprecated'>Deprecated</em>] 
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
                            <td><a class='fn' href='fn.TF_DeleteSessionOptions.html'
                                   title='tensorflow_sys::TF_DeleteSessionOptions'>TF_DeleteSessionOptions</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_DeleteSessionWithGraph.html'
+                                  title='tensorflow_sys::TF_DeleteSessionWithGraph'>TF_DeleteSessionWithGraph</a></td>
                            <td class='docblock short'>
                                 
                            </td>
@@ -163,6 +240,13 @@
                            <td><a class='fn' href='fn.TF_ExtendGraph.html'
                                   title='tensorflow_sys::TF_ExtendGraph'>TF_ExtendGraph</a></td>
                            <td class='docblock short'>
+                               [<em class='stab deprecated'>Deprecated</em>] 
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_FinishOperation.html'
+                                  title='tensorflow_sys::TF_FinishOperation'>TF_FinishOperation</a></td>
+                           <td class='docblock short'>
                                 
                            </td>
                        </tr>
@@ -183,6 +267,27 @@
                        <tr class=' module-item'>
                            <td><a class='fn' href='fn.TF_GetOpList.html'
                                   title='tensorflow_sys::TF_GetOpList'>TF_GetOpList</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_GraphNextOperation.html'
+                                  title='tensorflow_sys::TF_GraphNextOperation'>TF_GraphNextOperation</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_GraphOperationByName.html'
+                                  title='tensorflow_sys::TF_GraphOperationByName'>TF_GraphOperationByName</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_GraphToGraphDef.html'
+                                  title='tensorflow_sys::TF_GraphToGraphDef'>TF_GraphToGraphDef</a></td>
                            <td class='docblock short'>
                                 
                            </td>
@@ -216,15 +321,36 @@
                            </td>
                        </tr>
                        <tr class=' module-item'>
-                           <td><a class='fn' href='fn.TF_NewSession.html'
-                                  title='tensorflow_sys::TF_NewSession'>TF_NewSession</a></td>
+                           <td><a class='fn' href='fn.TF_NewGraph.html'
+                                  title='tensorflow_sys::TF_NewGraph'>TF_NewGraph</a></td>
                            <td class='docblock short'>
                                 
                            </td>
                        </tr>
                        <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_NewOperation.html'
+                                  title='tensorflow_sys::TF_NewOperation'>TF_NewOperation</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_NewSession.html'
+                                  title='tensorflow_sys::TF_NewSession'>TF_NewSession</a></td>
+                           <td class='docblock short'>
+                               [<em class='stab deprecated'>Deprecated</em>] 
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
                            <td><a class='fn' href='fn.TF_NewSessionOptions.html'
                                   title='tensorflow_sys::TF_NewSessionOptions'>TF_NewSessionOptions</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_NewSessionWithGraph.html'
+                                  title='tensorflow_sys::TF_NewSessionWithGraph'>TF_NewSessionWithGraph</a></td>
                            <td class='docblock short'>
                                 
                            </td>
@@ -251,15 +377,148 @@
                            </td>
                        </tr>
                        <tr class=' module-item'>
-                           <td><a class='fn' href='fn.TF_PRun.html'
-                                  title='tensorflow_sys::TF_PRun'>TF_PRun</a></td>
+                           <td><a class='fn' href='fn.TF_OperationDevice.html'
+                                  title='tensorflow_sys::TF_OperationDevice'>TF_OperationDevice</a></td>
                            <td class='docblock short'>
                                 
                            </td>
                        </tr>
                        <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationGetAttrValueProto.html'
+                                  title='tensorflow_sys::TF_OperationGetAttrValueProto'>TF_OperationGetAttrValueProto</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationGetControlInputs.html'
+                                  title='tensorflow_sys::TF_OperationGetControlInputs'>TF_OperationGetControlInputs</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationGetControlOutputs.html'
+                                  title='tensorflow_sys::TF_OperationGetControlOutputs'>TF_OperationGetControlOutputs</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationInput.html'
+                                  title='tensorflow_sys::TF_OperationInput'>TF_OperationInput</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationInputListLength.html'
+                                  title='tensorflow_sys::TF_OperationInputListLength'>TF_OperationInputListLength</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationInputType.html'
+                                  title='tensorflow_sys::TF_OperationInputType'>TF_OperationInputType</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationName.html'
+                                  title='tensorflow_sys::TF_OperationName'>TF_OperationName</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationNumControlInputs.html'
+                                  title='tensorflow_sys::TF_OperationNumControlInputs'>TF_OperationNumControlInputs</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationNumControlOutputs.html'
+                                  title='tensorflow_sys::TF_OperationNumControlOutputs'>TF_OperationNumControlOutputs</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationNumInputs.html'
+                                  title='tensorflow_sys::TF_OperationNumInputs'>TF_OperationNumInputs</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationNumOutputs.html'
+                                  title='tensorflow_sys::TF_OperationNumOutputs'>TF_OperationNumOutputs</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationOpType.html'
+                                  title='tensorflow_sys::TF_OperationOpType'>TF_OperationOpType</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationOutputConsumers.html'
+                                  title='tensorflow_sys::TF_OperationOutputConsumers'>TF_OperationOutputConsumers</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationOutputListLength.html'
+                                  title='tensorflow_sys::TF_OperationOutputListLength'>TF_OperationOutputListLength</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationOutputNumConsumers.html'
+                                  title='tensorflow_sys::TF_OperationOutputNumConsumers'>TF_OperationOutputNumConsumers</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationOutputType.html'
+                                  title='tensorflow_sys::TF_OperationOutputType'>TF_OperationOutputType</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_OperationToOperationDef.html'
+                                  title='tensorflow_sys::TF_OperationToOperationDef'>TF_OperationToOperationDef</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_PRun.html'
+                                  title='tensorflow_sys::TF_PRun'>TF_PRun</a></td>
+                           <td class='docblock short'>
+                               [<em class='stab deprecated'>Deprecated</em>] 
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
                            <td><a class='fn' href='fn.TF_PRunSetup.html'
                                   title='tensorflow_sys::TF_PRunSetup'>TF_PRunSetup</a></td>
+                           <td class='docblock short'>
+                               [<em class='stab deprecated'>Deprecated</em>] 
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_Reset.html'
+                                  title='tensorflow_sys::TF_Reset'>TF_Reset</a></td>
                            <td class='docblock short'>
                                 
                            </td>
@@ -268,12 +527,159 @@
                            <td><a class='fn' href='fn.TF_Run.html'
                                   title='tensorflow_sys::TF_Run'>TF_Run</a></td>
                            <td class='docblock short'>
+                               [<em class='stab deprecated'>Deprecated</em>] 
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SessionPRun.html'
+                                  title='tensorflow_sys::TF_SessionPRun'>TF_SessionPRun</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SessionPRunSetup.html'
+                                  title='tensorflow_sys::TF_SessionPRunSetup'>TF_SessionPRunSetup</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SessionRun.html'
+                                  title='tensorflow_sys::TF_SessionRun'>TF_SessionRun</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrBool.html'
+                                  title='tensorflow_sys::TF_SetAttrBool'>TF_SetAttrBool</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrBoolList.html'
+                                  title='tensorflow_sys::TF_SetAttrBoolList'>TF_SetAttrBoolList</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrFloat.html'
+                                  title='tensorflow_sys::TF_SetAttrFloat'>TF_SetAttrFloat</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrFloatList.html'
+                                  title='tensorflow_sys::TF_SetAttrFloatList'>TF_SetAttrFloatList</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrInt.html'
+                                  title='tensorflow_sys::TF_SetAttrInt'>TF_SetAttrInt</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrIntList.html'
+                                  title='tensorflow_sys::TF_SetAttrIntList'>TF_SetAttrIntList</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrShape.html'
+                                  title='tensorflow_sys::TF_SetAttrShape'>TF_SetAttrShape</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrShapeList.html'
+                                  title='tensorflow_sys::TF_SetAttrShapeList'>TF_SetAttrShapeList</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrString.html'
+                                  title='tensorflow_sys::TF_SetAttrString'>TF_SetAttrString</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrStringList.html'
+                                  title='tensorflow_sys::TF_SetAttrStringList'>TF_SetAttrStringList</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrTensor.html'
+                                  title='tensorflow_sys::TF_SetAttrTensor'>TF_SetAttrTensor</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrTensorList.html'
+                                  title='tensorflow_sys::TF_SetAttrTensorList'>TF_SetAttrTensorList</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrTensorShapeProto.html'
+                                  title='tensorflow_sys::TF_SetAttrTensorShapeProto'>TF_SetAttrTensorShapeProto</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrTensorShapeProtoList.html'
+                                  title='tensorflow_sys::TF_SetAttrTensorShapeProtoList'>TF_SetAttrTensorShapeProtoList</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrToAttrValueProto.html'
+                                  title='tensorflow_sys::TF_SetAttrToAttrValueProto'>TF_SetAttrToAttrValueProto</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrType.html'
+                                  title='tensorflow_sys::TF_SetAttrType'>TF_SetAttrType</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetAttrTypeList.html'
+                                  title='tensorflow_sys::TF_SetAttrTypeList'>TF_SetAttrTypeList</a></td>
+                           <td class='docblock short'>
                                 
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='fn' href='fn.TF_SetConfig.html'
                                   title='tensorflow_sys::TF_SetConfig'>TF_SetConfig</a></td>
+                           <td class='docblock short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.TF_SetDevice.html'
+                                  title='tensorflow_sys::TF_SetDevice'>TF_SetDevice</a></td>
                            <td class='docblock short'>
                                 
                            </td>

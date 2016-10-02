@@ -1,1 +1,0 @@
-initSidebarItems({"struct":[["Xorshift128Plus","The Xorshift128+ algorithm."]]});

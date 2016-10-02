@@ -47,10 +47,14 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-1047' class='srclink' href='../src/tensorflow/src/lib.rs.html#539-543' title='goto source code'>[src]</a></span></h1>
-<pre class='rust trait'>pub trait TensorType: <a class='trait' href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html' title='core::fmt::Display'>Display</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> + 'static {
+               </span><a id='src-1849' class='srclink' href='../src/tensorflow/src/lib.rs.html#569-573' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait TensorType: <a class='trait' href='https://doc.rust-lang.org/nightly/core/default/trait.Default.html' title='core::default::Default'>Default</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html' title='core::clone::Clone'>Clone</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html' title='core::marker::Copy'>Copy</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html' title='core::fmt::Display'>Display</a> + <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> + 'static {
     fn <a href='#tymethod.data_type' class='fnname'>data_type</a>() -&gt; <a class='enum' href='../tensorflow/enum.DataType.html' title='tensorflow::DataType'>DataType</a>;
 }</pre><div class='docblock'><p>A Rust type that maps to a <code>DataType</code>.</p>
+
+<p>Currently, all implementors must <em>not</em> implement Drop (or transitively contain
+anything that does) and must be bit-for-bit compatible with the corresponding C
+type. Clients must not implement this trait.</p>
 </div>
             <h2 id='required-methods'>Required Methods</h2>
             <div class='methods'>
