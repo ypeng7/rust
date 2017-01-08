@@ -47,7 +47,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a id='src-772' class='srclink' href='../../src/tensorflow/src/expr.rs.html#2-510' title='goto source code'>[src]</a></span></h1>
+               </span><a id='src-619' class='srclink' href='../../src/tensorflow/src/expr.rs.html#2-698' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>This module builds computation graphs.</p>
 
 <p>This module is unfinished.</p>
@@ -56,77 +56,84 @@
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Add.html'
                                   title='tensorflow::expr::Add'>Add</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>Expression resulting from adding two subexpressions.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Assign.html'
                                   title='tensorflow::expr::Assign'>Assign</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>Expression that assigns a value to a variable.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Compiler.html'
                                   title='tensorflow::expr::Compiler'>Compiler</a></td>
-                           <td class='docblock short'>
-                                
+                           <td class='docblock-short'>
+                                <p>A <code>Compiler</code> compiles <code>Expr</code>s to <code>Operation</code>s.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Div.html'
                                   title='tensorflow::expr::Div'>Div</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>Expression resulting from dividing two subexpressions.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Expr.html'
                                   title='tensorflow::expr::Expr'>Expr</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>A operation in an expression tree, which is a thin wrapper around an ExprImpl.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Mul.html'
                                   title='tensorflow::expr::Mul'>Mul</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>Expression resulting from multiplying two subexpressions.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Neg.html'
                                   title='tensorflow::expr::Neg'>Neg</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>Expression resulting from negation of an expression.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Placeholder.html'
                                   title='tensorflow::expr::Placeholder'>Placeholder</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>Expression for a placeholder.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Rem.html'
                                   title='tensorflow::expr::Rem'>Rem</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>Expression resulting from taking a modulus.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Sub.html'
                                   title='tensorflow::expr::Sub'>Sub</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>Expression resulting from subtracting two subexpressions.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.TruncateDiv.html'
+                                  title='tensorflow::expr::TruncateDiv'>TruncateDiv</a></td>
+                           <td class='docblock-short'>
+                                <p>Expression that assigns a value to a variable.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='struct' href='struct.Variable.html'
                                   title='tensorflow::expr::Variable'>Variable</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>Expression for a variable.</p>
                            </td>
                        </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
@@ -134,7 +141,7 @@
                        <tr class=' module-item'>
                            <td><a class='enum' href='enum.OpLevel.html'
                                   title='tensorflow::expr::OpLevel'>OpLevel</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>Denotes operator precedence.
 Used for displaying expressions as strings.</p>
                            </td>
@@ -143,14 +150,15 @@ Used for displaying expressions as strings.</p>
                        <tr class=' module-item'>
                            <td><a class='trait' href='trait.AnyExpr.html'
                                   title='tensorflow::expr::AnyExpr'>AnyExpr</a></td>
-                           <td class='docblock short'>
-                                
+                           <td class='docblock-short'>
+                                <p>An <code>AnyExpr</code> is just an <code>Expr&lt;T&gt;</code> for some unknown <code>T</code>.
+Clients <em>should not</em> implement this.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
                            <td><a class='trait' href='trait.ExprImpl.html'
                                   title='tensorflow::expr::ExprImpl'>ExprImpl</a></td>
-                           <td class='docblock short'>
+                           <td class='docblock-short'>
                                 <p>Trait implemented by all expression types.
 Most users will want to store an Expr instead.</p>
                            </td>
@@ -210,11 +218,9 @@ Most users will want to store an Expr instead.</p>
     <script>
         window.rootPath = "../../";
         window.currentCrate = "tensorflow";
-        window.playgroundUrl = "";
     </script>
     <script src="../../jquery.js"></script>
     <script src="../../main.js"></script>
-    
     <script defer src="../../search-index.js"></script>
 </body>
 </html>
