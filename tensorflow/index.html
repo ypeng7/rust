@@ -29,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'></p><script>window.sidebarCurrent = {name: 'tensorflow', ty: 'mod', relpath: '../'};</script>
+        <p class='location'>Crate tensorflow</p><div class="block items"><ul><li><a href="#modules">Modules</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#traits">Traits</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'tensorflow', ty: 'mod', relpath: '../'};</script>
     </nav>
 
     <nav class="sub">
@@ -48,7 +48,7 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../src/tensorflow/lib.rs.html#1-996' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/tensorflow/lib.rs.html#1-1211' title='goto source code'>[src]</a></span></h1>
 <div class='docblock'><p>This crate provides Rust bindings for the
 <a href="https://www.tensorflow.org"><code>TensorFlow</code></a> machine learning library.</p>
 </div><h2 id='modules' class='section-header'><a href="#modules">Modules</a></h2>
@@ -66,6 +66,13 @@
                                   title='struct tensorflow::BFloat16'>BFloat16</a></td>
                            <td class='docblock-short'>
                                 <p>BFloat16 provides a Rust type for BFloat16.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.Device.html"
+                                  title='struct tensorflow::Device'>Device</a></td>
+                           <td class='docblock-short'>
+                                <p>Metadata about a device.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -140,6 +147,13 @@ It holds an operation and an index into the outputs of that operation.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
+                           <td><a class="struct" href="struct.QInt8.html"
+                                  title='struct tensorflow::QInt8'>QInt8</a></td>
+                           <td class='docblock-short'>
+                                <p>Quantized type for i8.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
                            <td><a class="struct" href="struct.QInt16.html"
                                   title='struct tensorflow::QInt16'>QInt16</a></td>
                            <td class='docblock-short'>
@@ -154,10 +168,10 @@ It holds an operation and an index into the outputs of that operation.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
-                           <td><a class="struct" href="struct.QInt8.html"
-                                  title='struct tensorflow::QInt8'>QInt8</a></td>
+                           <td><a class="struct" href="struct.QUInt8.html"
+                                  title='struct tensorflow::QUInt8'>QUInt8</a></td>
                            <td class='docblock-short'>
-                                <p>Quantized type for i8.</p>
+                                <p>Quantized type for u8.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -168,10 +182,10 @@ It holds an operation and an index into the outputs of that operation.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
-                           <td><a class="struct" href="struct.QUInt8.html"
-                                  title='struct tensorflow::QUInt8'>QUInt8</a></td>
+                           <td><a class="struct" href="struct.SavedModelBundle.html"
+                                  title='struct tensorflow::SavedModelBundle'>SavedModelBundle</a></td>
                            <td class='docblock-short'>
-                                <p>Quantized type for u8.</p>
+                                <p>Aggregation type for a saved model bundle.</p>
                            </td>
                        </tr>
                        <tr class=' module-item'>
@@ -256,13 +270,6 @@ have a known rank with each dimension being known or unknown.</p>
                            <td class='docblock-short'>
                                 <p>Convenience type for <code>Result</code> with <code>Status</code> as the error type.</p>
                            </td>
-                       </tr>
-                       <tr class=' module-item'>
-                           <td><a class="type" href="type.TensorShape.html"
-                                  title='type tensorflow::TensorShape'>TensorShape</a></td>
-                           <td class='docblock-short'>
-                               [<div class='stab deprecated'>Deprecated</div>] 
-                           </td>
                        </tr></table></section>
     <section id='search' class="content hidden"></section>
 
@@ -320,7 +327,6 @@ have a known rank with each dimension being known or unknown.</p>
         window.rootPath = "../";
         window.currentCrate = "tensorflow";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>

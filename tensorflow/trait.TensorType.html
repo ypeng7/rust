@@ -29,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='index.html'>tensorflow</a></p><script>window.sidebarCurrent = {name: 'TensorType', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Trait TensorType</p><div class="block items"><ul><li><a href="#required-methods">Required Methods</a></li><li><a href="#implementors">Implementors</a></li></ul></div><p class='location'><a href='index.html'>tensorflow</a></p><script>window.sidebarCurrent = {name: 'TensorType', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -48,11 +48,15 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../src/tensorflow/lib.rs.html#511-521' title='goto source code'>[src]</a></span></h1>
-<pre class='rust trait'>pub trait TensorType: <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Copy.html" title="trait core::marker::Copy">Copy</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html" title="trait core::fmt::Display">Display</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + 'static {
+               </span><a class='srclink' href='../src/tensorflow/lib.rs.html#521-547' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait TensorType: <a class="trait" href="https://doc.rust-lang.org/nightly/core/default/trait.Default.html" title="trait core::default::Default">Default</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html" title="trait core::fmt::Display">Display</a> + <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> + 'static {
     fn <a href='#tymethod.data_type' class='fnname'>data_type</a>() -&gt; <a class="enum" href="../tensorflow/enum.DataType.html" title="enum tensorflow::DataType">DataType</a>;
     fn <a href='#tymethod.zero' class='fnname'>zero</a>() -&gt; Self;
     fn <a href='#tymethod.one' class='fnname'>one</a>() -&gt; Self;
+    fn <a href='#tymethod.is_repr_c' class='fnname'>is_repr_c</a>() -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>;
+    fn <a href='#tymethod.unpack' class='fnname'>unpack</a>(data: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <a class="type" href="../tensorflow/type.Result.html" title="type tensorflow::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;Self&gt;&gt;;
+    fn <a href='#tymethod.packed_size' class='fnname'>packed_size</a>(data: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[Self]</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>;
+    fn <a href='#tymethod.pack' class='fnname'>pack</a>(data: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[Self]</a>, buffer: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;mut [</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>) -&gt; <a class="type" href="../tensorflow/type.Result.html" title="type tensorflow::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a>&gt;;
 }</pre><div class='docblock'><p>A Rust type that maps to a <code>DataType</code>.</p>
 
 <p>Currently, all implementors must <em>not</em> implement Drop (or transitively contain
@@ -68,6 +72,15 @@ supply custom implementations.</p>
         <h3 id='tymethod.data_type' class='method'><span id='data_type.v' class='invisible'><code>fn <a href='#tymethod.data_type' class='fnname'>data_type</a>() -&gt; <a class="enum" href="../tensorflow/enum.DataType.html" title="enum tensorflow::DataType">DataType</a></code></span></h3><div class='docblock'><p>Returns the DataType that corresponds to this type.</p>
 </div><h3 id='tymethod.zero' class='method'><span id='zero.v' class='invisible'><code>fn <a href='#tymethod.zero' class='fnname'>zero</a>() -&gt; Self</code></span></h3><div class='docblock'><p>Returns the zero value.</p>
 </div><h3 id='tymethod.one' class='method'><span id='one.v' class='invisible'><code>fn <a href='#tymethod.one' class='fnname'>one</a>() -&gt; Self</code></span></h3><div class='docblock'><p>Returns the one value.</p>
+</div><h3 id='tymethod.is_repr_c' class='method'><span id='is_repr_c.v' class='invisible'><code>fn <a href='#tymethod.is_repr_c' class='fnname'>is_repr_c</a>() -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a></code></span></h3><div class='docblock'><p>Return true if the data has the same representation in C and Rust and
+can be written/read directly.</p>
+</div><h3 id='tymethod.unpack' class='method'><span id='unpack.v' class='invisible'><code>fn <a href='#tymethod.unpack' class='fnname'>unpack</a>(data: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>, count: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>) -&gt; <a class="type" href="../tensorflow/type.Result.html" title="type tensorflow::Result">Result</a>&lt;<a class="struct" href="https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html" title="struct collections::vec::Vec">Vec</a>&lt;Self&gt;&gt;</code></span></h3><div class='docblock'><p>Unpacks data from C. Returns an error if <code>is_repr_c()</code> is true for this
+type or some other error occurred.</p>
+</div><h3 id='tymethod.packed_size' class='method'><span id='packed_size.v' class='invisible'><code>fn <a href='#tymethod.packed_size' class='fnname'>packed_size</a>(data: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[Self]</a>) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></code></span></h3><div class='docblock'><p>Returns the number of bytes in the packed representation.  If
+<code>is_repr_c()</code> returns true, this will return 0.</p>
+</div><h3 id='tymethod.pack' class='method'><span id='pack.v' class='invisible'><code>fn <a href='#tymethod.pack' class='fnname'>pack</a>(data: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;[Self]</a>, buffer: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">&amp;mut [</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.u8.html">u8</a><a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.slice.html">]</a>) -&gt; <a class="type" href="../tensorflow/type.Result.html" title="type tensorflow::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.tuple.html">()</a>&gt;</code></span></h3><div class='docblock'><p>Packs data for sending to C.  Returns an error if <code>is_repr_c()</code> returns
+true for this type or some other error occurred.  The size of the buffer
+must be at least as large as the value returned by <code>packed_size(data)</code>.</p>
 </div></div>
         <h2 id='implementors'>Implementors</h2>
         <ul class='item-list' id='implementors-list'>
@@ -87,6 +100,7 @@ supply custom implementations.</p>
 <li><code>impl TensorType for <a class="struct" href="../tensorflow/struct.QUInt16.html" title="struct tensorflow::QUInt16">QUInt16</a></code></li>
 <li><code>impl TensorType for <a class="struct" href="../tensorflow/struct.QInt32.html" title="struct tensorflow::QInt32">QInt32</a></code></li>
 <li><code>impl TensorType for <a class="struct" href="../tensorflow/struct.BFloat16.html" title="struct tensorflow::BFloat16">BFloat16</a></code></li>
+<li><code>impl TensorType for <a class="struct" href="https://doc.rust-lang.org/nightly/collections/string/struct.String.html" title="struct collections::string::String">String</a></code></li>
 </ul><script type="text/javascript" async
                          src="../implementors/tensorflow/trait.TensorType.js">
                  </script></section>
@@ -146,7 +160,6 @@ supply custom implementations.</p>
         window.rootPath = "../";
         window.currentCrate = "tensorflow";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>

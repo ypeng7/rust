@@ -29,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'><a href='index.html'>tensorflow</a></p><script>window.sidebarCurrent = {name: 'Output', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Struct Output</p><div class="block items"><ul><li><a href="#fields">Fields</a></li><li><a href="#implementations">Trait Implementations</a></li></ul></div><p class='location'><a href='index.html'>tensorflow</a></p><script>window.sidebarCurrent = {name: 'Output', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -48,13 +48,13 @@
                    <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
                        [<span class='inner'>&#x2212;</span>]
                    </a>
-               </span><a class='srclink' href='../src/tensorflow/graph.rs.html#585-591' title='goto source code'>[src]</a></span></h1>
+               </span><a class='srclink' href='../src/tensorflow/graph.rs.html#586-592' title='goto source code'>[src]</a></span></h1>
 <pre class='rust struct'>pub struct Output {
     pub operation: <a class="struct" href="../tensorflow/struct.Operation.html" title="struct tensorflow::Operation">Operation</a>,
     pub index: <a class="type" href="../libc/type.c_int.html" title="type libc::c_int">c_int</a>,
 }</pre><div class='docblock'><p>A <code>Output</code> is one end of a graph edge.
 It holds an operation and an index into the outputs of that operation.</p>
-</div><h2 class='fields'>Fields</h2><span id='structfield.operation' class="structfield">
+</div><h2 id='fields' class='fields'>Fields</h2><span id='structfield.operation' class="structfield">
                            <span id='operation.v' class='invisible'>
                            <code>operation: <a class="struct" href="../tensorflow/struct.Operation.html" title="struct tensorflow::Operation">Operation</a></code>
                            </span></span><div class='docblock'><p>Operation the edge connects to.</p>
@@ -62,10 +62,10 @@ It holds an operation and an index into the outputs of that operation.</p>
                            <span id='index.v' class='invisible'>
                            <code>index: <a class="type" href="../libc/type.c_int.html" title="type libc::c_int">c_int</a></code>
                            </span></span><div class='docblock'><p>Index into either the outputs of the operation.</p>
-</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../tensorflow/struct.Output.html" title="struct tensorflow::Output">Output</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#584' title='goto source code'>[src]</a></span></h3>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../tensorflow/struct.Output.html" title="struct tensorflow::Output">Output</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#585' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></h4>
 <div class='docblock'><p>Formats the value using the given formatter.</p>
-</div></div><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../tensorflow/struct.Output.html" title="struct tensorflow::Output">Output</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#584' title='goto source code'>[src]</a></span></h3>
+</div></div><h3 class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html" title="trait core::clone::Clone">Clone</a> for <a class="struct" href="../tensorflow/struct.Output.html" title="struct tensorflow::Output">Output</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#585' title='goto source code'>[src]</a></span></h3>
 <div class='impl-items'><h4 id='method.clone' class="method"><span id='clone.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone' class='fnname'>clone</a>(&amp;self) -&gt; <a class="struct" href="../tensorflow/struct.Output.html" title="struct tensorflow::Output">Output</a></code></span></h4>
 <div class='docblock'><p>Returns a copy of the value. <a href="https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#tymethod.clone">Read more</a></p>
 </div><h4 id='method.clone_from' class="method"><span id='clone_from.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/clone/trait.Clone.html#method.clone_from' class='fnname'>clone_from</a>(&amp;mut self, source: &amp;Self)</code><div class='since' title='Stable since Rust version 1.0.0'>1.0.0</div></span></h4>
@@ -127,7 +127,6 @@ It holds an operation and an index into the outputs of that operation.</p>
         window.rootPath = "../";
         window.currentCrate = "tensorflow";
     </script>
-    <script src="../jquery.js"></script>
     <script src="../main.js"></script>
     <script defer src="../search-index.js"></script>
 </body>
