@@ -29,7 +29,7 @@
 
     <nav class="sidebar">
         
-        <p class='location'>Enum DataType</p><div class="block items"><a class="sidebar-title" href="#variants">Variants</a><div class="sidebar-links"><a href="#variant.UnrecognizedEnumValue">UnrecognizedEnumValue</a><a href="#variant.Float">Float</a><a href="#variant.Double">Double</a><a href="#variant.Int32">Int32</a><a href="#variant.UInt8">UInt8</a><a href="#variant.Int16">Int16</a><a href="#variant.Int8">Int8</a><a href="#variant.String">String</a><a href="#variant.Complex64">Complex64</a><a href="#variant.Int64">Int64</a><a href="#variant.Bool">Bool</a><a href="#variant.QInt8">QInt8</a><a href="#variant.QUInt8">QUInt8</a><a href="#variant.QInt32">QInt32</a><a href="#variant.BFloat16">BFloat16</a><a href="#variant.QInt16">QInt16</a><a href="#variant.QUInt16">QUInt16</a><a href="#variant.UInt16">UInt16</a><a href="#variant.Complex128">Complex128</a><a href="#variant.Half">Half</a><a href="#variant.Resource">Resource</a><a href="#variant.Variant">Variant</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-PartialEq">PartialEq</a><a href="#impl-Eq">Eq</a><a href="#impl-PartialOrd">PartialOrd</a><a href="#impl-Ord">Ord</a><a href="#impl-Debug">Debug</a><a href="#impl-Copy">Copy</a><a href="#impl-Clone">Clone</a><a href="#impl-Display">Display</a></div></div><p class='location'><a href='index.html'>tensorflow</a></p><script>window.sidebarCurrent = {name: 'DataType', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+        <p class='location'>Enum DataType</p><div class="block items"><a class="sidebar-title" href="#variants">Variants</a><div class="sidebar-links"><a href="#variant.UnrecognizedEnumValue">UnrecognizedEnumValue</a><a href="#variant.Float">Float</a><a href="#variant.Double">Double</a><a href="#variant.Int32">Int32</a><a href="#variant.UInt8">UInt8</a><a href="#variant.Int16">Int16</a><a href="#variant.Int8">Int8</a><a href="#variant.String">String</a><a href="#variant.Complex64">Complex64</a><a href="#variant.Int64">Int64</a><a href="#variant.Bool">Bool</a><a href="#variant.QInt8">QInt8</a><a href="#variant.QUInt8">QUInt8</a><a href="#variant.QInt32">QInt32</a><a href="#variant.BFloat16">BFloat16</a><a href="#variant.QInt16">QInt16</a><a href="#variant.QUInt16">QUInt16</a><a href="#variant.UInt16">UInt16</a><a href="#variant.Complex128">Complex128</a><a href="#variant.Half">Half</a><a href="#variant.Resource">Resource</a><a href="#variant.Variant">Variant</a><a href="#variant.UInt32">UInt32</a><a href="#variant.UInt64">UInt64</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-PartialEq">PartialEq</a><a href="#impl-Eq">Eq</a><a href="#impl-PartialOrd">PartialOrd</a><a href="#impl-Ord">Ord</a><a href="#impl-Debug">Debug</a><a href="#impl-Copy">Copy</a><a href="#impl-Clone">Clone</a><a href="#impl-Display">Display</a></div></div><p class='location'><a href='index.html'>tensorflow</a></p><script>window.sidebarCurrent = {name: 'DataType', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
     </nav>
 
     <nav class="sub">
@@ -72,6 +72,8 @@
     Half,
     Resource,
     Variant,
+    UInt32,
+    UInt64,
 }</pre><div class='docblock'><p>Type of a single tensor element.</p>
 </div><h2 id='variants' class='variants small-section-header'>
                    Variants<a href='#variants' class='anchor'></a></h2>
@@ -100,6 +102,8 @@ C API without loss in case new values are added in the future.</p>
 </div><span id="variant.Half" class="variant small-section-header"><a href="#variant.Half" class="anchor field"></a><span id='Half.v' class='invisible'><code>Half</code></span></span><div class='docblock'><p>16-bit floating point.</p>
 </div><span id="variant.Resource" class="variant small-section-header"><a href="#variant.Resource" class="anchor field"></a><span id='Resource.v' class='invisible'><code>Resource</code></span></span><div class='docblock'><p>TensorFlow Resource (name, container, device,...)</p>
 </div><span id="variant.Variant" class="variant small-section-header"><a href="#variant.Variant" class="anchor field"></a><span id='Variant.v' class='invisible'><code>Variant</code></span></span><div class='docblock'><p>A dynamic type similar to std::any::Any.</p>
+</div><span id="variant.UInt32" class="variant small-section-header"><a href="#variant.UInt32" class="anchor field"></a><span id='UInt32.v' class='invisible'><code>UInt32</code></span></span><div class='docblock'><p>32-bit unsigned integer.</p>
+</div><span id="variant.UInt64" class="variant small-section-header"><a href="#variant.UInt64" class="anchor field"></a><span id='UInt64.v' class='invisible'><code>UInt64</code></span></span><div class='docblock'><p>64-bit unsigned integer.</p>
 </div>
             <h2 id='implementations' class='small-section-header'>
               Trait Implementations<a href='#implementations' class='anchor'></a>

@@ -52,7 +52,7 @@
 <pre class='rust struct'>pub struct Expr&lt;T:&nbsp;<a class="trait" href="../../tensorflow/trait.TensorType.html" title="trait tensorflow::TensorType">TensorType</a>&gt; { /* fields omitted */ }</pre><div class='docblock'><p>A operation in an expression tree, which is a thin wrapper around an ExprImpl.</p>
 
 <p>This is separate from ExprImpl because we want expressions to be wrapped in an Rc,
-and we can&#39;t directly implement std::ops::Add, etc., for Rc<E: ExprImpl<T>&gt;.</p>
+and we can&#39;t directly implement std::ops::Add, etc., for Rc&lt;E: ExprImpl&lt;Tgt;&gt;.</p>
 </div>
                     <h2 id='methods' class='small-section-header'>
                       Methods<a href='#methods' class='anchor'></a>

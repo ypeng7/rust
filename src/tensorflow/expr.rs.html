@@ -852,7 +852,7 @@
 <span class="doccomment">/// A operation in an expression tree, which is a thin wrapper around an ExprImpl.</span>
 <span class="doccomment">///</span>
 <span class="doccomment">/// This is separate from ExprImpl because we want expressions to be wrapped in an Rc,</span>
-<span class="doccomment">/// and we can&#39;t directly implement std::ops::Add, etc., for Rc&lt;E: ExprImpl&lt;T&gt;&gt;.</span>
+<span class="doccomment">/// and we can&#39;t directly implement std::ops::Add, etc., for Rc&amp;lt;E: ExprImpl&amp;lt;Tgt;&amp;gt;.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>,<span class="ident">Clone</span>)]</span>
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">Expr</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TensorType</span><span class="op">&gt;</span> {
     <span class="ident">expr</span>: <span class="ident">Rc</span><span class="op">&lt;</span><span class="ident">ExprImpl</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span>,
