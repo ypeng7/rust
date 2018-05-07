@@ -10,8 +10,11 @@
     <title>tensorflow_sys - Rust</title>
 
     <link rel="stylesheet" type="text/css" href="../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../main.css">
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../dark.css">
+    <link rel="stylesheet" type="text/css" href="../main.css" id="themeStyle">
+    <script src="../storage.js"></script>
     
 
     
@@ -28,10 +31,18 @@
     
 
     <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
         
-        <p class='location'>Crate tensorflow_sys</p><div class="block items"><ul><li><a href="#reexports">Reexports</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'tensorflow_sys', ty: 'mod', relpath: '../'};</script>
+        <p class='location'>Crate tensorflow_sys</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#reexports">Re-exports</a></li><li><a href="#structs">Structs</a></li><li><a href="#enums">Enums</a></li><li><a href="#constants">Constants</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'></p><script>window.sidebarCurrent = {name: 'tensorflow_sys', ty: 'mod', relpath: '../'};</script></div>
     </nav>
 
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -49,7 +60,7 @@
                        [<span class='inner'>&#x2212;</span>]
                    </a>
                </span><a class='srclink' href='../src/tensorflow_sys/lib.rs.html#1-9' title='goto source code'>[src]</a></span></h1>
-<h2 id='reexports' class='section-header'><a href="#reexports">Reexports</a></h2>
+<h2 id='reexports' class='section-header'><a href="#reexports">Re-exports</a></h2>
 <table><tr><td><code>pub use <a class="enum" href="../tensorflow_sys/enum.TF_Code.html" title="enum tensorflow_sys::TF_Code">TF_Code</a>::*;</code></td></tr><tr><td><code>pub use <a class="enum" href="../tensorflow_sys/enum.TF_DataType.html" title="enum tensorflow_sys::TF_DataType">TF_DataType</a>::*;</code></td></tr><tr><td><code>pub use <a class="enum" href="../tensorflow_sys/enum.TF_AttrType.html" title="enum tensorflow_sys::TF_AttrType">TF_AttrType</a>::*;</code></td></tr></table><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
 <table>
                        <tr class=' module-item'>
@@ -188,6 +199,13 @@
                        <tr class=' module-item'>
                            <td><a class="struct" href="struct.TF_WhileParams.html"
                                   title='struct tensorflow_sys::TF_WhileParams'>TF_WhileParams</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="struct" href="struct.__fsid_t.html"
+                                  title='struct tensorflow_sys::__fsid_t'>__fsid_t</a></td>
                            <td class='docblock-short'>
                                 
                            </td>
@@ -489,6 +507,34 @@
                            </td>
                        </tr>
                        <tr class=' module-item'>
+                           <td><a class="constant" href="constant._BITS_STDINT_INTN_H.html"
+                                  title='constant tensorflow_sys::_BITS_STDINT_INTN_H'>_BITS_STDINT_INTN_H</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant._BITS_STDINT_UINTN_H.html"
+                                  title='constant tensorflow_sys::_BITS_STDINT_UINTN_H'>_BITS_STDINT_UINTN_H</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant._BITS_TYPESIZES_H.html"
+                                  title='constant tensorflow_sys::_BITS_TYPESIZES_H'>_BITS_TYPESIZES_H</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant._BITS_TYPES_H.html"
+                                  title='constant tensorflow_sys::_BITS_TYPES_H'>_BITS_TYPES_H</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
                            <td><a class="constant" href="constant._BITS_WCHAR_H.html"
                                   title='constant tensorflow_sys::_BITS_WCHAR_H'>_BITS_WCHAR_H</a></td>
                            <td class='docblock-short'>
@@ -545,8 +591,50 @@
                            </td>
                        </tr>
                        <tr class=' module-item'>
+                           <td><a class="constant" href="constant.__FD_SETSIZE.html"
+                                  title='constant tensorflow_sys::__FD_SETSIZE'>__FD_SETSIZE</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
                            <td><a class="constant" href="constant.__GLIBC_MINOR__.html"
                                   title='constant tensorflow_sys::__GLIBC_MINOR__'>__GLIBC_MINOR__</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant.__GLIBC_USE_DEPRECATED_GETS.html"
+                                  title='constant tensorflow_sys::__GLIBC_USE_DEPRECATED_GETS'>__GLIBC_USE_DEPRECATED_GETS</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant.__GLIBC_USE_IEC_60559_BFP_EXT.html"
+                                  title='constant tensorflow_sys::__GLIBC_USE_IEC_60559_BFP_EXT'>__GLIBC_USE_IEC_60559_BFP_EXT</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant.__GLIBC_USE_IEC_60559_FUNCS_EXT.html"
+                                  title='constant tensorflow_sys::__GLIBC_USE_IEC_60559_FUNCS_EXT'>__GLIBC_USE_IEC_60559_FUNCS_EXT</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant.__GLIBC_USE_IEC_60559_TYPES_EXT.html"
+                                  title='constant tensorflow_sys::__GLIBC_USE_IEC_60559_TYPES_EXT'>__GLIBC_USE_IEC_60559_TYPES_EXT</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant.__GLIBC_USE_LIB_EXT2.html"
+                                  title='constant tensorflow_sys::__GLIBC_USE_LIB_EXT2'>__GLIBC_USE_LIB_EXT2</a></td>
                            <td class='docblock-short'>
                                 
                            </td>
@@ -561,6 +649,34 @@
                        <tr class=' module-item'>
                            <td><a class="constant" href="constant.__GNU_LIBRARY__.html"
                                   title='constant tensorflow_sys::__GNU_LIBRARY__'>__GNU_LIBRARY__</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant.__HAVE_GENERIC_SELECTION.html"
+                                  title='constant tensorflow_sys::__HAVE_GENERIC_SELECTION'>__HAVE_GENERIC_SELECTION</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant.__INO_T_MATCHES_INO64_T.html"
+                                  title='constant tensorflow_sys::__INO_T_MATCHES_INO64_T'>__INO_T_MATCHES_INO64_T</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant.__OFF_T_MATCHES_OFF64_T.html"
+                                  title='constant tensorflow_sys::__OFF_T_MATCHES_OFF64_T'>__OFF_T_MATCHES_OFF64_T</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant.__RLIM_T_MATCHES_RLIM64_T.html"
+                                  title='constant tensorflow_sys::__RLIM_T_MATCHES_RLIM64_T'>__RLIM_T_MATCHES_RLIM64_T</a></td>
                            <td class='docblock-short'>
                                 
                            </td>
@@ -701,6 +817,13 @@
                        <tr class=' module-item'>
                            <td><a class="constant" href="constant.__WORDSIZE_TIME64_COMPAT32.html"
                                   title='constant tensorflow_sys::__WORDSIZE_TIME64_COMPAT32'>__WORDSIZE_TIME64_COMPAT32</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="constant" href="constant.__glibc_c99_flexarr_available.html"
+                                  title='constant tensorflow_sys::__glibc_c99_flexarr_available'>__glibc_c99_flexarr_available</a></td>
                            <td class='docblock-short'>
                                 
                            </td>
@@ -1820,6 +1943,13 @@
                            </td>
                        </tr>
                        <tr class=' module-item'>
+                           <td><a class="fn" href="fn.TF_TryEvaluateConstant.html"
+                                  title='fn tensorflow_sys::TF_TryEvaluateConstant'>TF_TryEvaluateConstant</a><a title='unsafe function' href='#'><sup>⚠</sup></a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
                            <td><a class="fn" href="fn.TF_Version.html"
                                   title='fn tensorflow_sys::TF_Version'>TF_Version</a><a title='unsafe function' href='#'><sup>⚠</sup></a></td>
                            <td class='docblock-short'>
@@ -1827,6 +1957,384 @@
                            </td>
                        </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
 <table>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__blkcnt64_t.html"
+                                  title='type tensorflow_sys::__blkcnt64_t'>__blkcnt64_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__blkcnt_t.html"
+                                  title='type tensorflow_sys::__blkcnt_t'>__blkcnt_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__blksize_t.html"
+                                  title='type tensorflow_sys::__blksize_t'>__blksize_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__caddr_t.html"
+                                  title='type tensorflow_sys::__caddr_t'>__caddr_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__clock_t.html"
+                                  title='type tensorflow_sys::__clock_t'>__clock_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__clockid_t.html"
+                                  title='type tensorflow_sys::__clockid_t'>__clockid_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__daddr_t.html"
+                                  title='type tensorflow_sys::__daddr_t'>__daddr_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__dev_t.html"
+                                  title='type tensorflow_sys::__dev_t'>__dev_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__fsblkcnt64_t.html"
+                                  title='type tensorflow_sys::__fsblkcnt64_t'>__fsblkcnt64_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__fsblkcnt_t.html"
+                                  title='type tensorflow_sys::__fsblkcnt_t'>__fsblkcnt_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__fsfilcnt64_t.html"
+                                  title='type tensorflow_sys::__fsfilcnt64_t'>__fsfilcnt64_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__fsfilcnt_t.html"
+                                  title='type tensorflow_sys::__fsfilcnt_t'>__fsfilcnt_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__fsword_t.html"
+                                  title='type tensorflow_sys::__fsword_t'>__fsword_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__gid_t.html"
+                                  title='type tensorflow_sys::__gid_t'>__gid_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__id_t.html"
+                                  title='type tensorflow_sys::__id_t'>__id_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__ino64_t.html"
+                                  title='type tensorflow_sys::__ino64_t'>__ino64_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__ino_t.html"
+                                  title='type tensorflow_sys::__ino_t'>__ino_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__int16_t.html"
+                                  title='type tensorflow_sys::__int16_t'>__int16_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__int32_t.html"
+                                  title='type tensorflow_sys::__int32_t'>__int32_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__int64_t.html"
+                                  title='type tensorflow_sys::__int64_t'>__int64_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__int8_t.html"
+                                  title='type tensorflow_sys::__int8_t'>__int8_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__intmax_t.html"
+                                  title='type tensorflow_sys::__intmax_t'>__intmax_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__intptr_t.html"
+                                  title='type tensorflow_sys::__intptr_t'>__intptr_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__key_t.html"
+                                  title='type tensorflow_sys::__key_t'>__key_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__loff_t.html"
+                                  title='type tensorflow_sys::__loff_t'>__loff_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__mode_t.html"
+                                  title='type tensorflow_sys::__mode_t'>__mode_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__nlink_t.html"
+                                  title='type tensorflow_sys::__nlink_t'>__nlink_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__off64_t.html"
+                                  title='type tensorflow_sys::__off64_t'>__off64_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__off_t.html"
+                                  title='type tensorflow_sys::__off_t'>__off_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__pid_t.html"
+                                  title='type tensorflow_sys::__pid_t'>__pid_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__qaddr_t.html"
+                                  title='type tensorflow_sys::__qaddr_t'>__qaddr_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__quad_t.html"
+                                  title='type tensorflow_sys::__quad_t'>__quad_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__rlim64_t.html"
+                                  title='type tensorflow_sys::__rlim64_t'>__rlim64_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__rlim_t.html"
+                                  title='type tensorflow_sys::__rlim_t'>__rlim_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__sig_atomic_t.html"
+                                  title='type tensorflow_sys::__sig_atomic_t'>__sig_atomic_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__socklen_t.html"
+                                  title='type tensorflow_sys::__socklen_t'>__socklen_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__ssize_t.html"
+                                  title='type tensorflow_sys::__ssize_t'>__ssize_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__suseconds_t.html"
+                                  title='type tensorflow_sys::__suseconds_t'>__suseconds_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__syscall_slong_t.html"
+                                  title='type tensorflow_sys::__syscall_slong_t'>__syscall_slong_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__syscall_ulong_t.html"
+                                  title='type tensorflow_sys::__syscall_ulong_t'>__syscall_ulong_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__time_t.html"
+                                  title='type tensorflow_sys::__time_t'>__time_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__timer_t.html"
+                                  title='type tensorflow_sys::__timer_t'>__timer_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__u_char.html"
+                                  title='type tensorflow_sys::__u_char'>__u_char</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__u_int.html"
+                                  title='type tensorflow_sys::__u_int'>__u_int</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__u_long.html"
+                                  title='type tensorflow_sys::__u_long'>__u_long</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__u_quad_t.html"
+                                  title='type tensorflow_sys::__u_quad_t'>__u_quad_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__u_short.html"
+                                  title='type tensorflow_sys::__u_short'>__u_short</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__uid_t.html"
+                                  title='type tensorflow_sys::__uid_t'>__uid_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__uint16_t.html"
+                                  title='type tensorflow_sys::__uint16_t'>__uint16_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__uint32_t.html"
+                                  title='type tensorflow_sys::__uint32_t'>__uint32_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__uint64_t.html"
+                                  title='type tensorflow_sys::__uint64_t'>__uint64_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__uint8_t.html"
+                                  title='type tensorflow_sys::__uint8_t'>__uint8_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__uintmax_t.html"
+                                  title='type tensorflow_sys::__uintmax_t'>__uintmax_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class="type" href="type.__useconds_t.html"
+                                  title='type tensorflow_sys::__useconds_t'>__useconds_t</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
                        <tr class=' module-item'>
                            <td><a class="type" href="type.int_fast16_t.html"
                                   title='type tensorflow_sys::int_fast16_t'>int_fast16_t</a></td>
@@ -1972,20 +2480,22 @@
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt>?</dt>
+                    <dt><kbd>?</kbd></dt>
                     <dd>Show this help dialog</dd>
-                    <dt>S</dt>
+                    <dt><kbd>S</kbd></dt>
                     <dd>Focus the search field</dd>
-                    <dt>↑</dt>
+                    <dt><kbd>↑</kbd></dt>
                     <dd>Move up in search results</dd>
-                    <dt>↓</dt>
+                    <dt><kbd>↓</kbd></dt>
                     <dd>Move down in search results</dd>
-                    <dt>↹</dt>
+                    <dt><kbd>↹</kbd></dt>
                     <dd>Switch tab</dd>
-                    <dt>&#9166;</dt>
+                    <dt><kbd>&#9166;</kbd></dt>
                     <dd>Go to active search result</dd>
-                    <dt style="width:31px;">+ / -</dt>
-                    <dd>Collapse/expand all sections</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
                 </dl>
             </div>
 

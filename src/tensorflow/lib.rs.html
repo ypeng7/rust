@@ -10,8 +10,11 @@
     <title>lib.rs.html -- source</title>
 
     <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css">
+    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
+    
+    <link rel="stylesheet" type="text/css" href="../../dark.css">
+    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
+    <script src="../../storage.js"></script>
     
 
     
@@ -28,10 +31,18 @@
     
 
     <nav class="sidebar">
+        <div class="sidebar-menu">&#9776;</div>
         
         
     </nav>
 
+    <div class="theme-picker">
+        <button id="theme-picker" aria-label="Pick another theme!">
+            <img src="../../brush.svg" width="18" alt="Pick another theme!">
+        </button>
+        <div id="theme-choices"></div>
+    </div>
+    <script src="../../theme.js"></script>
     <nav class="sub">
         <form class="search-form js-only">
             <div class="search-container">
@@ -1526,9 +1537,23 @@
 <span id="1481">1481</span>
 <span id="1482">1482</span>
 <span id="1483">1483</span>
+<span id="1484">1484</span>
+<span id="1485">1485</span>
+<span id="1486">1486</span>
+<span id="1487">1487</span>
+<span id="1488">1488</span>
+<span id="1489">1489</span>
+<span id="1490">1490</span>
+<span id="1491">1491</span>
+<span id="1492">1492</span>
+<span id="1493">1493</span>
+<span id="1494">1494</span>
 </pre><pre class="rust ">
 <span class="doccomment">//! This crate provides Rust bindings for the</span>
 <span class="doccomment">//! [`TensorFlow`](https://www.tensorflow.org) machine learning library.</span>
+<span class="doccomment">//!</span>
+<span class="doccomment">//! If you aren&#39;t sure how to use something, please see the</span>
+<span class="doccomment">//! [examples](https://github.com/tensorflow/rust/tree/master/examples) folder.</span>
 
 <span class="attribute">#![<span class="ident">warn</span>(<span class="ident">missing_copy_implementations</span>,
         <span class="ident">missing_debug_implementations</span>,
@@ -1573,11 +1598,11 @@
 <span class="doccomment">/// Will panic if `msg` contains an embedded 0 byte.</span>
 <span class="macro">macro_rules</span><span class="macro">!</span> <span class="ident">invalid_arg</span> {
   (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fmt</span>:<span class="ident">expr</span>) <span class="op">=&gt;</span> {
-    <span class="ident">Status</span>::<span class="ident">new_set</span>(<span class="ident">Code</span>::<span class="ident">InvalidArgument</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fmt</span>).<span class="ident">unwrap</span>()
+    ::<span class="ident">Status</span>::<span class="ident">new_set</span>(::<span class="ident">Code</span>::<span class="ident">InvalidArgument</span>, <span class="macro-nonterminal">$</span><span class="macro-nonterminal">fmt</span>).<span class="ident">unwrap</span>()
   };
   (<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fmt</span>:<span class="ident">expr</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">arg</span>:<span class="ident">tt</span>)<span class="kw-2">*</span>) <span class="op">=&gt;</span> ({
     <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="macro">format</span><span class="macro">!</span>(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">fmt</span>, $(<span class="macro-nonterminal">$</span><span class="macro-nonterminal">arg</span>)<span class="kw-2">*</span>);
-    <span class="ident">Status</span>::<span class="ident">new_set</span>(<span class="ident">Code</span>::<span class="ident">InvalidArgument</span>, <span class="kw-2">&amp;</span><span class="ident">msg</span>).<span class="ident">unwrap</span>()
+    ::<span class="ident">Status</span>::<span class="ident">new_set</span>(::<span class="ident">Code</span>::<span class="ident">InvalidArgument</span>, <span class="kw-2">&amp;</span><span class="ident">msg</span>).<span class="ident">unwrap</span>()
   });
 }
 
@@ -2766,6 +2791,8 @@
 
 <span class="comment">////////////////////////</span>
 
+<span class="comment">// TODO: Replace these with pub(crate)</span>
+
 <span class="doccomment">/// This exposes Buffer behavior without making it public.</span>
 <span class="kw">trait</span> <span class="ident">BufferTrait</span> {
     <span class="kw">fn</span> <span class="ident">is_owned</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="ident">bool</span>;
@@ -2777,6 +2804,7 @@
 <span class="doccomment">/// This exposes Graph behavior without making it public.</span>
 <span class="kw">trait</span> <span class="ident">GraphTrait</span> {
     <span class="kw">fn</span> <span class="ident">inner</span>(<span class="kw-2">&amp;</span><span class="self">self</span>) <span class="op">-&gt;</span> <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tf</span>::<span class="ident">TF_Graph</span>;
+    <span class="kw">unsafe</span> <span class="kw">fn</span> <span class="ident">from_c</span>(<span class="ident">inner</span>: <span class="kw-2">*</span><span class="kw-2">mut</span> <span class="ident">tf</span>::<span class="ident">TF_Graph</span>) <span class="op">-&gt;</span> <span class="self">Self</span>;
 }
 
 
@@ -2846,6 +2874,11 @@
         <span class="self">self</span>.<span class="number">0</span>.<span class="ident">fmt</span>(<span class="ident">f</span>)
     }
 }
+
+<span class="comment">////////////////////////</span>
+
+<span class="kw">mod</span> <span class="ident">while_loop</span>;
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">while_loop</span>::<span class="kw-2">*</span>;
 
 <span class="comment">////////////////////////</span>
 
@@ -3024,20 +3057,22 @@
                 <h2>Keyboard Shortcuts</h2>
 
                 <dl>
-                    <dt>?</dt>
+                    <dt><kbd>?</kbd></dt>
                     <dd>Show this help dialog</dd>
-                    <dt>S</dt>
+                    <dt><kbd>S</kbd></dt>
                     <dd>Focus the search field</dd>
-                    <dt>↑</dt>
+                    <dt><kbd>↑</kbd></dt>
                     <dd>Move up in search results</dd>
-                    <dt>↓</dt>
+                    <dt><kbd>↓</kbd></dt>
                     <dd>Move down in search results</dd>
-                    <dt>↹</dt>
+                    <dt><kbd>↹</kbd></dt>
                     <dd>Switch tab</dd>
-                    <dt>&#9166;</dt>
+                    <dt><kbd>&#9166;</kbd></dt>
                     <dd>Go to active search result</dd>
-                    <dt style="width:31px;">+ / -</dt>
-                    <dd>Collapse/expand all sections</dd>
+                    <dt><kbd>+</kbd></dt>
+                    <dd>Expand all sections</dd>
+                    <dt><kbd>-</kbd></dt>
+                    <dd>Collapse all sections</dd>
                 </dl>
             </div>
 
