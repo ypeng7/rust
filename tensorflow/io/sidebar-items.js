@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["RecordWriter","A type for writing bytes in the TFRecords format."]]});

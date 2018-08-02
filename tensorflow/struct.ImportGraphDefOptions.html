@@ -1,183 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="rustdoc">
-    <meta name="description" content="API documentation for the Rust `ImportGraphDefOptions` struct in crate `tensorflow`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang, ImportGraphDefOptions">
-
-    <title>tensorflow::ImportGraphDefOptions - Rust</title>
-
-    <link rel="stylesheet" type="text/css" href="../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle">
-    
-    <link rel="stylesheet" type="text/css" href="../dark.css">
-    <link rel="stylesheet" type="text/css" href="../main.css" id="themeStyle">
-    <script src="../storage.js"></script>
-    
-
-    
-    
-</head>
-<body class="rustdoc struct">
-    <!--[if lte IE 8]>
-    <div class="warning">
-        This old browser is unsupported and will most likely display funky
-        things.
-    </div>
-    <![endif]-->
-
-    
-
-    <nav class="sidebar">
-        <div class="sidebar-menu">&#9776;</div>
-        
-        <p class='location'>Struct ImportGraphDefOptions</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.new">new</a><a href="#method.set_prefix">set_prefix</a><a href="#method.add_input_mapping">add_input_mapping</a><a href="#method.remap_control_dependency">remap_control_dependency</a><a href="#method.add_control_dependency">add_control_dependency</a><a href="#method.add_return_output">add_return_output</a><a href="#method.add_return_operation">add_return_operation</a><a href="#method.num_return_outputs">num_return_outputs</a><a href="#method.num_return_operations">num_return_operations</a><a href="#method.set_uniquify_names">set_uniquify_names</a><a href="#method.set_uniquify_prefix">set_uniquify_prefix</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Debug">Debug</a><a href="#impl-Drop">Drop</a></div></div><p class='location'><a href='index.html'>tensorflow</a></p><script>window.sidebarCurrent = {name: 'ImportGraphDefOptions', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div>
-    </nav>
-
-    <div class="theme-picker">
-        <button id="theme-picker" aria-label="Pick another theme!">
-            <img src="../brush.svg" width="18" alt="Pick another theme!">
-        </button>
-        <div id="theme-choices"></div>
-    </div>
-    <script src="../theme.js"></script>
-    <nav class="sub">
-        <form class="search-form js-only">
-            <div class="search-container">
-                <input class="search-input" name="search"
-                       autocomplete="off"
-                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
-                       type="search">
-            </div>
-        </form>
-    </nav>
-
-    <section id='main' class="content">
-<h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>tensorflow</a>::<wbr><a class="struct" href=''>ImportGraphDefOptions</a></span><span class='out-of-band'><span id='render-detail'>
-                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
-                       [<span class='inner'>&#x2212;</span>]
-                   </a>
-               </span><a class='srclink' href='../src/tensorflow/graph.rs.html#60-62' title='goto source code'>[src]</a></span></h1>
-<pre class='rust struct'>pub struct ImportGraphDefOptions { /* fields omitted */ }</pre><div class='docblock'><p><code>ImportGraphDefOptions</code> holds options that can be passed to
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `ImportGraphDefOptions` struct in crate `tensorflow`."><meta name="keywords" content="rust, rustlang, rust-lang, ImportGraphDefOptions"><title>tensorflow::ImportGraphDefOptions - Rust</title><link rel="stylesheet" type="text/css" href="../normalize.css"><link rel="stylesheet" type="text/css" href="../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../dark.css"><link rel="stylesheet" type="text/css" href="../light.css" id="themeStyle"><script src="../storage.js"></script></head><body class="rustdoc struct"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><p class='location'>Struct ImportGraphDefOptions</p><div class="sidebar-elems"><div class="block items"><a class="sidebar-title" href="#methods">Methods</a><div class="sidebar-links"><a href="#method.new">new</a><a href="#method.set_prefix">set_prefix</a><a href="#method.add_input_mapping">add_input_mapping</a><a href="#method.remap_control_dependency">remap_control_dependency</a><a href="#method.add_control_dependency">add_control_dependency</a><a href="#method.add_return_output">add_return_output</a><a href="#method.add_return_operation">add_return_operation</a><a href="#method.num_return_outputs">num_return_outputs</a><a href="#method.num_return_operations">num_return_operations</a><a href="#method.set_uniquify_names">set_uniquify_names</a><a href="#method.set_uniquify_prefix">set_uniquify_prefix</a></div><a class="sidebar-title" href="#implementations">Trait Implementations</a><div class="sidebar-links"><a href="#impl-Debug">Debug</a><a href="#impl-Drop">Drop</a></div><a class="sidebar-title" href="#synthetic-implementations">Auto Trait Implementations</a><div class="sidebar-links"><a href="#impl-Send">!Send</a><a href="#impl-Sync">!Sync</a></div></div><p class='location'><a href='index.html'>tensorflow</a></p><script>window.sidebarCurrent = {name: 'ImportGraphDefOptions', ty: 'struct', relpath: ''};</script><script defer src="sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../settings.html"><img src="../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='in-band'>Struct <a href='index.html'>tensorflow</a>::<wbr><a class="struct" href=''>ImportGraphDefOptions</a></span><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../src/tensorflow/graph.rs.html#60-62' title='goto source code'>[src]</a></span></h1><div class="docblock type-decl"><pre class='rust struct'>pub struct ImportGraphDefOptions { /* fields omitted */ }</pre></div><div class='docblock'><p><code>ImportGraphDefOptions</code> holds options that can be passed to
 <code>Graph::import_graph_def</code>.</p>
 </div>
                     <h2 id='methods' class='small-section-header'>
                       Methods<a href='#methods' class='anchor'></a>
                     </h2>
-                <h3 id='impl' class='impl'><span class='in-band'><code>impl <a class="struct" href="../tensorflow/struct.ImportGraphDefOptions.html" title="struct tensorflow::ImportGraphDefOptions">ImportGraphDefOptions</a></code><a href='#impl' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/lib.rs.html#62-73' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><code>pub fn <a href='#method.new' class='fnname'>new</a>() -&gt; Self</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/lib.rs.html#64-72' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Creates a default ImportGraphDefOptions.</p>
-</div></div><h3 id='impl-1' class='impl'><span class='in-band'><code>impl <a class="struct" href="../tensorflow/struct.ImportGraphDefOptions.html" title="struct tensorflow::ImportGraphDefOptions">ImportGraphDefOptions</a></code><a href='#impl-1' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#69-182' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.set_prefix' class="method"><span id='set_prefix.v' class='invisible'><code>pub fn <a href='#method.set_prefix' class='fnname'>set_prefix</a>(&amp;mut self, prefix: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/c_str/struct.NulError.html" title="struct std::ffi::c_str::NulError">NulError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#72-78' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Set the prefix to be prepended to the names of nodes in <code>graph_def</code> that will
+                <h3 id='impl' class='impl'><span class='in-band'><table class='table-display'><tbody><tr><td><code>impl <a class="struct" href="../tensorflow/struct.ImportGraphDefOptions.html" title="struct tensorflow::ImportGraphDefOptions">ImportGraphDefOptions</a></code><a href='#impl' class='anchor'></a></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/lib.rs.html#62-73' title='goto source code'>[src]</a></span></td></tr></tbody></table></h3><div class='impl-items'><h4 id='method.new' class="method"><span id='new.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.new' class='fnname'>new</a>() -&gt; Self</code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/lib.rs.html#64-72' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Creates a default ImportGraphDefOptions.</p>
+</div></div><h3 id='impl-1' class='impl'><span class='in-band'><table class='table-display'><tbody><tr><td><code>impl <a class="struct" href="../tensorflow/struct.ImportGraphDefOptions.html" title="struct tensorflow::ImportGraphDefOptions">ImportGraphDefOptions</a></code><a href='#impl-1' class='anchor'></a></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#69-182' title='goto source code'>[src]</a></span></td></tr></tbody></table></h3><div class='impl-items'><h4 id='method.set_prefix' class="method"><span id='set_prefix.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.set_prefix' class='fnname'>set_prefix</a>(&amp;mut self, prefix: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/c_str/struct.NulError.html" title="struct std::ffi::c_str::NulError">NulError</a>&gt;</code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#72-78' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Set the prefix to be prepended to the names of nodes in <code>graph_def</code> that will
 be imported into <code>graph</code>.</p>
-</div><h4 id='method.add_input_mapping' class="method"><span id='add_input_mapping.v' class='invisible'><code>pub fn <a href='#method.add_input_mapping' class='fnname'>add_input_mapping</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;src_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;src_index: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;dst: &amp;<a class="struct" href="../tensorflow/struct.Output.html" title="struct tensorflow::Output">Output</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/c_str/struct.NulError.html" title="struct std::ffi::c_str::NulError">NulError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#83-96' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Set any imported nodes with input <code>src_name:src_index</code> to have that input
+</div><h4 id='method.add_input_mapping' class="method"><span id='add_input_mapping.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.add_input_mapping' class='fnname'>add_input_mapping</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;src_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;src_index: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;dst: &amp;<a class="struct" href="../tensorflow/struct.Output.html" title="struct tensorflow::Output">Output</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/c_str/struct.NulError.html" title="struct std::ffi::c_str::NulError">NulError</a>&gt;</code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#83-96' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Set any imported nodes with input <code>src_name:src_index</code> to have that input
 replaced with <code>dst</code>. <code>src_name</code> refers to a node in the graph to be imported,
 <code>dst</code> references a node already existing in the graph being imported into.</p>
-</div><h4 id='method.remap_control_dependency' class="method"><span id='remap_control_dependency.v' class='invisible'><code>pub fn <a href='#method.remap_control_dependency' class='fnname'>remap_control_dependency</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;src_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;dst: &amp;<a class="struct" href="../tensorflow/struct.Operation.html" title="struct tensorflow::Operation">Operation</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/c_str/struct.NulError.html" title="struct std::ffi::c_str::NulError">NulError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#102-113' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Set any imported nodes with control input <code>src_name</code> to have that input
+</div><h4 id='method.remap_control_dependency' class="method"><span id='remap_control_dependency.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.remap_control_dependency' class='fnname'>remap_control_dependency</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;src_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;dst: &amp;<a class="struct" href="../tensorflow/struct.Operation.html" title="struct tensorflow::Operation">Operation</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/c_str/struct.NulError.html" title="struct std::ffi::c_str::NulError">NulError</a>&gt;</code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#102-113' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Set any imported nodes with control input <code>src_name</code> to have that input
 replaced with <code>dst</code>. <code>src_name</code> refers to a node in the graph to be imported,
 <code>dst</code> references an operation already existing in the graph being imported
 into.</p>
-</div><h4 id='method.add_control_dependency' class="method"><span id='add_control_dependency.v' class='invisible'><code>pub fn <a href='#method.add_control_dependency' class='fnname'>add_control_dependency</a>(&amp;mut self, oper: &amp;<a class="struct" href="../tensorflow/struct.Operation.html" title="struct tensorflow::Operation">Operation</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#117-121' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Cause the imported graph to have a control dependency on <code>oper</code>. <code>oper</code>
+</div><h4 id='method.add_control_dependency' class="method"><span id='add_control_dependency.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.add_control_dependency' class='fnname'>add_control_dependency</a>(&amp;mut self, oper: &amp;<a class="struct" href="../tensorflow/struct.Operation.html" title="struct tensorflow::Operation">Operation</a>)</code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#117-121' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Cause the imported graph to have a control dependency on <code>oper</code>. <code>oper</code>
 should exist in the graph being imported into.</p>
-</div><h4 id='method.add_return_output' class="method"><span id='add_return_output.v' class='invisible'><code>pub fn <a href='#method.add_return_output' class='fnname'>add_return_output</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;oper_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;index: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/c_str/struct.NulError.html" title="struct std::ffi::c_str::NulError">NulError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#126-135' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Add an output in <code>graph_def</code> to be returned via the <code>return_outputs</code> output
+</div><h4 id='method.add_return_output' class="method"><span id='add_return_output.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.add_return_output' class='fnname'>add_return_output</a>(<br>&nbsp;&nbsp;&nbsp;&nbsp;&amp;mut self, <br>&nbsp;&nbsp;&nbsp;&nbsp;oper_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>, <br>&nbsp;&nbsp;&nbsp;&nbsp;index: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a><br>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/c_str/struct.NulError.html" title="struct std::ffi::c_str::NulError">NulError</a>&gt;</code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#126-135' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Add an output in <code>graph_def</code> to be returned via the <code>return_outputs</code> output
 parameter of <code>import_graph_def()</code>. If the output is remapped via an input
 mapping, the corresponding existing tensor in <code>graph</code> will be returned.</p>
-</div><h4 id='method.add_return_operation' class="method"><span id='add_return_operation.v' class='invisible'><code>pub fn <a href='#method.add_return_operation' class='fnname'>add_return_operation</a>(&amp;mut self, oper_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/c_str/struct.NulError.html" title="struct std::ffi::c_str::NulError">NulError</a>&gt;</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#139-145' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Add an operation in <code>graph_def</code> to be returned via the <code>return_opers</code> output
+</div><h4 id='method.add_return_operation' class="method"><span id='add_return_operation.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.add_return_operation' class='fnname'>add_return_operation</a>(&amp;mut self, oper_name: &amp;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.str.html">str</a>) -&gt; <a class="enum" href="https://doc.rust-lang.org/nightly/core/result/enum.Result.html" title="enum core::result::Result">Result</a>&lt;<a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.unit.html">()</a>, <a class="struct" href="https://doc.rust-lang.org/nightly/std/ffi/c_str/struct.NulError.html" title="struct std::ffi::c_str::NulError">NulError</a>&gt;</code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#139-145' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Add an operation in <code>graph_def</code> to be returned via the <code>return_opers</code> output
 parameter of import_graph_def().</p>
-</div><h4 id='method.num_return_outputs' class="method"><span id='num_return_outputs.v' class='invisible'><code>pub fn <a href='#method.num_return_outputs' class='fnname'>num_return_outputs</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#148-150' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Returns the number of return outputs added via <code>add_return_output()</code>.</p>
-</div><h4 id='method.num_return_operations' class="method"><span id='num_return_operations.v' class='invisible'><code>pub fn <a href='#method.num_return_operations' class='fnname'>num_return_operations</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#153-155' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Returns the number of return operations added via <code>add_return_operation()</code>.</p>
-</div><h4 id='method.set_uniquify_names' class="method"><span id='set_uniquify_names.v' class='invisible'><code>pub fn <a href='#method.set_uniquify_names' class='fnname'>set_uniquify_names</a>(&amp;mut self, uniquify_names: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#162-169' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Set whether to uniquify imported operation names. If true, imported operation
+</div><h4 id='method.num_return_outputs' class="method"><span id='num_return_outputs.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.num_return_outputs' class='fnname'>num_return_outputs</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#148-150' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Returns the number of return outputs added via <code>add_return_output()</code>.</p>
+</div><h4 id='method.num_return_operations' class="method"><span id='num_return_operations.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.num_return_operations' class='fnname'>num_return_operations</a>(&amp;self) -&gt; <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.usize.html">usize</a></code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#153-155' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Returns the number of return operations added via <code>add_return_operation()</code>.</p>
+</div><h4 id='method.set_uniquify_names' class="method"><span id='set_uniquify_names.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.set_uniquify_names' class='fnname'>set_uniquify_names</a>(&amp;mut self, uniquify_names: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#162-169' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Set whether to uniquify imported operation names. If true, imported operation
 names will be modified if their name already exists in the graph. If false,
 conflicting names will be treated as an error. Note that this option has no
 effect if a prefix is set, since the prefix will guarantee all names are
 unique. Defaults to false.</p>
-</div><h4 id='method.set_uniquify_prefix' class="method"><span id='set_uniquify_prefix.v' class='invisible'><code>pub fn <a href='#method.set_uniquify_prefix' class='fnname'>set_uniquify_prefix</a>(&amp;mut self, uniquify_prefix: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#174-181' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>If true, the specified prefix will be modified if it already exists as an
+</div><h4 id='method.set_uniquify_prefix' class="method"><span id='set_uniquify_prefix.v' class='invisible'><table class='table-display'><tbody><tr><td><code>pub fn <a href='#method.set_uniquify_prefix' class='fnname'>set_uniquify_prefix</a>(&amp;mut self, uniquify_prefix: <a class="primitive" href="https://doc.rust-lang.org/nightly/std/primitive.bool.html">bool</a>)</code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#174-181' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>If true, the specified prefix will be modified if it already exists as an
 operation name or prefix in the graph. If false, a conflicting prefix will be
 treated as an error. This option has no effect if no prefix is specified.</p>
 </div></div>
-            <h2 id='implementations' class='small-section-header'>
-              Trait Implementations<a href='#implementations' class='anchor'></a>
-            </h2>
-        <h3 id='impl-Debug' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../tensorflow/struct.ImportGraphDefOptions.html" title="struct tensorflow::ImportGraphDefOptions">ImportGraphDefOptions</a></code><a href='#impl-Debug' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#59' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#59' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>
-</div></div><h3 id='impl-Drop' class='impl'><span class='in-band'><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html" title="trait core::ops::drop::Drop">Drop</a> for <a class="struct" href="../tensorflow/struct.ImportGraphDefOptions.html" title="struct tensorflow::ImportGraphDefOptions">ImportGraphDefOptions</a></code><a href='#impl-Drop' class='anchor'></a></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/lib.rs.html#81-87' title='goto source code'>[src]</a></span></h3>
-<div class='impl-items'><h4 id='method.drop' class="method"><span id='drop.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html#tymethod.drop' class='fnname'>drop</a>(&amp;mut self)</code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/lib.rs.html#82-86' title='goto source code'>[src]</a></span></h4>
-<div class='docblock'><p>Executes the destructor for this type. <a href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html#tymethod.drop">Read more</a></p>
-</div></div></section>
-    <section id='search' class="content hidden"></section>
-
-    <section class="footer"></section>
-
-    <aside id="help" class="hidden">
-        <div>
-            <h1 class="hidden">Help</h1>
-
-            <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
-
-                <dl>
-                    <dt><kbd>?</kbd></dt>
-                    <dd>Show this help dialog</dd>
-                    <dt><kbd>S</kbd></dt>
-                    <dd>Focus the search field</dd>
-                    <dt><kbd>↑</kbd></dt>
-                    <dd>Move up in search results</dd>
-                    <dt><kbd>↓</kbd></dt>
-                    <dd>Move down in search results</dd>
-                    <dt><kbd>↹</kbd></dt>
-                    <dd>Switch tab</dd>
-                    <dt><kbd>&#9166;</kbd></dt>
-                    <dd>Go to active search result</dd>
-                    <dt><kbd>+</kbd></dt>
-                    <dd>Expand all sections</dd>
-                    <dt><kbd>-</kbd></dt>
-                    <dd>Collapse all sections</dd>
-                </dl>
-            </div>
-
-            <div class="infos">
-                <h2>Search Tricks</h2>
-
-                <p>
-                    Prefix searches with a type followed by a colon (e.g.
-                    <code>fn:</code>) to restrict the search to a given type.
-                </p>
-
-                <p>
-                    Accepted types are: <code>fn</code>, <code>mod</code>,
-                    <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
-                </p>
-
-                <p>
-                    Search functions by type signature (e.g.
-                    <code>vec -> usize</code> or <code>* -> vec</code>)
-                </p>
-            </div>
-        </div>
-    </aside>
-
-    
-
-    <script>
-        window.rootPath = "../";
-        window.currentCrate = "tensorflow";
-    </script>
-    <script src="../main.js"></script>
-    <script defer src="../search-index.js"></script>
-</body>
-</html>
+                <h2 id='implementations' class='small-section-header'>
+                  Trait Implementations<a href='#implementations' class='anchor'></a>
+                </h2>
+                <div id='implementations-list'><h3 id='impl-Debug' class='impl'><span class='in-band'><table class='table-display'><tbody><tr><td><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html" title="trait core::fmt::Debug">Debug</a> for <a class="struct" href="../tensorflow/struct.ImportGraphDefOptions.html" title="struct tensorflow::ImportGraphDefOptions">ImportGraphDefOptions</a></code><a href='#impl-Debug' class='anchor'></a></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#59' title='goto source code'>[src]</a></span></td></tr></tbody></table></h3><div class='impl-items'><h4 id='method.fmt' class="method"><span id='fmt.v' class='invisible'><table class='table-display'><tbody><tr><td><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, f: &amp;mut <a class="struct" href="https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html" title="struct core::fmt::Formatter">Formatter</a>) -&gt; <a class="type" href="https://doc.rust-lang.org/nightly/core/fmt/type.Result.html" title="type core::fmt::Result">Result</a></code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/graph.rs.html#59' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Formats the value using the given formatter. <a href="https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt">Read more</a></p>
+</div></div><h3 id='impl-Drop' class='impl'><span class='in-band'><table class='table-display'><tbody><tr><td><code>impl <a class="trait" href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html" title="trait core::ops::drop::Drop">Drop</a> for <a class="struct" href="../tensorflow/struct.ImportGraphDefOptions.html" title="struct tensorflow::ImportGraphDefOptions">ImportGraphDefOptions</a></code><a href='#impl-Drop' class='anchor'></a></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/lib.rs.html#81-87' title='goto source code'>[src]</a></span></td></tr></tbody></table></h3><div class='impl-items'><h4 id='method.drop' class="method"><span id='drop.v' class='invisible'><table class='table-display'><tbody><tr><td><code>fn <a href='https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html#tymethod.drop' class='fnname'>drop</a>(&amp;mut self)</code></span></td><td><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/tensorflow/lib.rs.html#82-86' title='goto source code'>[src]</a></td></tr></tbody></table></span></h4><div class='docblock'><p>Executes the destructor for this type. <a href="https://doc.rust-lang.org/nightly/core/ops/drop/trait.Drop.html#tymethod.drop">Read more</a></p>
+</div></div></div>
+                <h2 id='synthetic-implementations' class='small-section-header'>
+                  Auto Trait Implementations<a href='#synthetic-implementations' class='anchor'></a>
+                </h2>
+                <div id='synthetic-implementations-list'>
+            <h3 id='impl-Send' class='impl'><span class='in-band'><table class='table-display'><tbody><tr><td><code>impl !<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Send.html" title="trait core::marker::Send">Send</a> for <a class="struct" href="../tensorflow/struct.ImportGraphDefOptions.html" title="struct tensorflow::ImportGraphDefOptions">ImportGraphDefOptions</a></code><a href='#impl-Send' class='anchor'></a></span></td><td><span class='out-of-band'></span></td></tr></tbody></table></h3><div class='impl-items'></div><h3 id='impl-Sync' class='impl'><span class='in-band'><table class='table-display'><tbody><tr><td><code>impl !<a class="trait" href="https://doc.rust-lang.org/nightly/core/marker/trait.Sync.html" title="trait core::marker::Sync">Sync</a> for <a class="struct" href="../tensorflow/struct.ImportGraphDefOptions.html" title="struct tensorflow::ImportGraphDefOptions">ImportGraphDefOptions</a></code><a href='#impl-Sync' class='anchor'></a></span></td><td><span class='out-of-band'></span></td></tr></tbody></table></h3><div class='impl-items'></div></div></section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../";window.currentCrate = "tensorflow";</script><script src="../aliases.js"></script><script src="../main.js"></script><script defer src="../search-index.js"></script></body></html>

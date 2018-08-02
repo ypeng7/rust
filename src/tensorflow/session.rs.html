@@ -1,60 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="rustdoc">
-    <meta name="description" content="Source to the Rust file `src/session.rs`.">
-    <meta name="keywords" content="rust, rustlang, rust-lang">
-
-    <title>session.rs.html -- source</title>
-
-    <link rel="stylesheet" type="text/css" href="../../normalize.css">
-    <link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle">
-    
-    <link rel="stylesheet" type="text/css" href="../../dark.css">
-    <link rel="stylesheet" type="text/css" href="../../main.css" id="themeStyle">
-    <script src="../../storage.js"></script>
-    
-
-    
-    
-</head>
-<body class="rustdoc source">
-    <!--[if lte IE 8]>
-    <div class="warning">
-        This old browser is unsupported and will most likely display funky
-        things.
-    </div>
-    <![endif]-->
-
-    
-
-    <nav class="sidebar">
-        <div class="sidebar-menu">&#9776;</div>
-        
-        
-    </nav>
-
-    <div class="theme-picker">
-        <button id="theme-picker" aria-label="Pick another theme!">
-            <img src="../../brush.svg" width="18" alt="Pick another theme!">
-        </button>
-        <div id="theme-choices"></div>
-    </div>
-    <script src="../../theme.js"></script>
-    <nav class="sub">
-        <form class="search-form js-only">
-            <div class="search-container">
-                <input class="search-input" name="search"
-                       autocomplete="off"
-                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
-                       type="search">
-            </div>
-        </form>
-    </nav>
-
-    <section id='main' class="content"><pre class="line-numbers"><span id="1">  1</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/session.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>session.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css"><link rel="stylesheet" type="text/css" href="../../light.css" id="themeStyle"><script src="../../storage.js"></script></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><input class="search-input" name="search" autocomplete="off" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"><a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
 <span id="4">  4</span>
@@ -541,6 +485,53 @@
 <span id="485">485</span>
 <span id="486">486</span>
 <span id="487">487</span>
+<span id="488">488</span>
+<span id="489">489</span>
+<span id="490">490</span>
+<span id="491">491</span>
+<span id="492">492</span>
+<span id="493">493</span>
+<span id="494">494</span>
+<span id="495">495</span>
+<span id="496">496</span>
+<span id="497">497</span>
+<span id="498">498</span>
+<span id="499">499</span>
+<span id="500">500</span>
+<span id="501">501</span>
+<span id="502">502</span>
+<span id="503">503</span>
+<span id="504">504</span>
+<span id="505">505</span>
+<span id="506">506</span>
+<span id="507">507</span>
+<span id="508">508</span>
+<span id="509">509</span>
+<span id="510">510</span>
+<span id="511">511</span>
+<span id="512">512</span>
+<span id="513">513</span>
+<span id="514">514</span>
+<span id="515">515</span>
+<span id="516">516</span>
+<span id="517">517</span>
+<span id="518">518</span>
+<span id="519">519</span>
+<span id="520">520</span>
+<span id="521">521</span>
+<span id="522">522</span>
+<span id="523">523</span>
+<span id="524">524</span>
+<span id="525">525</span>
+<span id="526">526</span>
+<span id="527">527</span>
+<span id="528">528</span>
+<span id="529">529</span>
+<span id="530">530</span>
+<span id="531">531</span>
+<span id="532">532</span>
+<span id="533">533</span>
+<span id="534">534</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="ident">tf</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>};
@@ -589,10 +580,10 @@
                      .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">CString</span>::<span class="ident">new</span>(<span class="ident">s</span>.<span class="ident">as_bytes</span>()).<span class="ident">ok</span>())
                      .<span class="ident">ok_or_else</span>(<span class="op">||</span> <span class="macro">invalid_arg</span><span class="macro">!</span>(<span class="string">&quot;Invalid export directory path&quot;</span>))<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">tags_cstr</span>: <span class="ident">Vec</span><span class="op">&lt;</span>_<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">tags</span>.<span class="ident">into_iter</span>()
+        <span class="kw">let</span> <span class="ident">tags_cstr</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">tags</span>.<span class="ident">into_iter</span>()
                                     .<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">CString</span>::<span class="ident">new</span>(<span class="ident">t</span>.<span class="ident">as_ref</span>()))
-                                    .<span class="ident">collect</span>::<span class="op">&lt;</span>::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>_, _<span class="op">&gt;&gt;</span>()
-                                    .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="macro">invalid_arg</span><span class="macro">!</span>(<span class="string">&quot;Invalid tag name&quot;</span>))<span class="question-mark">?</span>;
+                                    .<span class="ident">collect</span>::<span class="op">&lt;</span>::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;&gt;</span>()
+                                    .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="macro">invalid_arg</span><span class="macro">!</span>(<span class="string">&quot;Invalid tag name&quot;</span>))<span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">tags_ptr</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">tags_cstr</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">t</span>.<span class="ident">as_ptr</span>()).<span class="ident">collect</span>();
 
         <span class="comment">// The empty TF_Buffer will be filled by LoadSessionFromSavedModel</span>
@@ -655,10 +646,10 @@
                      .<span class="ident">and_then</span>(<span class="op">|</span><span class="ident">s</span><span class="op">|</span> <span class="ident">CString</span>::<span class="ident">new</span>(<span class="ident">s</span>.<span class="ident">as_bytes</span>()).<span class="ident">ok</span>())
                      .<span class="ident">ok_or_else</span>(<span class="op">||</span> <span class="macro">invalid_arg</span><span class="macro">!</span>(<span class="string">&quot;Invalid export directory path&quot;</span>))<span class="question-mark">?</span>;
 
-        <span class="kw">let</span> <span class="ident">tags_cstr</span>: <span class="ident">Vec</span><span class="op">&lt;</span>_<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">tags</span>.<span class="ident">into_iter</span>()
+        <span class="kw">let</span> <span class="ident">tags_cstr</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">tags</span>.<span class="ident">into_iter</span>()
                                     .<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">CString</span>::<span class="ident">new</span>(<span class="ident">t</span>.<span class="ident">as_ref</span>()))
-                                    .<span class="ident">collect</span>::<span class="op">&lt;</span>::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span>_, _<span class="op">&gt;&gt;</span>()
-                                    .<span class="ident">map_err</span>(<span class="op">|</span>_<span class="op">|</span> <span class="macro">invalid_arg</span><span class="macro">!</span>(<span class="string">&quot;Invalid tag name&quot;</span>))<span class="question-mark">?</span>;
+                                    .<span class="ident">collect</span>::<span class="op">&lt;</span>::<span class="ident">std</span>::<span class="ident">result</span>::<span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw">_</span>, <span class="kw">_</span><span class="op">&gt;&gt;</span>()
+                                    .<span class="ident">map_err</span>(<span class="op">|</span><span class="kw">_</span><span class="op">|</span> <span class="macro">invalid_arg</span><span class="macro">!</span>(<span class="string">&quot;Invalid tag name&quot;</span>))<span class="question-mark">?</span>;
         <span class="comment">// keeping tags_cstr to retain strings in memory</span>
         <span class="kw">let</span> <span class="ident">tags_ptr</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">*</span><span class="kw">const</span> <span class="ident">c_char</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">tags_cstr</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">t</span>.<span class="ident">as_ptr</span>()).<span class="ident">collect</span>();
 
@@ -689,13 +680,13 @@
     }
 
     <span class="doccomment">/// Runs the graph, feeding the inputs and then fetching the outputs requested in the step.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">step</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">StepWithGraph</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">run</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">step</span>: <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">SessionRunArgs</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="comment">// In case we&#39;re running it a second time and not all outputs were taken out.</span>
         <span class="ident">step</span>.<span class="ident">drop_output_tensors</span>();
 
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">Status</span>::<span class="ident">new</span>();
-        <span class="kw">let</span> <span class="ident">maybe_tensors</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span>_<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">input_tensors</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">t</span>.<span class="ident">inner</span>()).<span class="ident">collect</span>();
-        <span class="kw">let</span> <span class="ident">input_tensors</span>: <span class="ident">Vec</span><span class="op">&lt;</span>_<span class="op">&gt;</span> <span class="op">=</span> <span class="ident">maybe_tensors</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">maybe_tensors</span>: <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">input_tensors</span>.<span class="ident">iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">t</span><span class="op">|</span> <span class="ident">t</span>.<span class="ident">inner</span>()).<span class="ident">collect</span>();
+        <span class="kw">let</span> <span class="ident">input_tensors</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw">_</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">maybe_tensors</span><span class="question-mark">?</span>;
         <span class="kw">unsafe</span> {
             <span class="ident">tf</span>::<span class="ident">TF_SessionRun</span>(<span class="self">self</span>.<span class="ident">inner</span>,
                               <span class="ident">ptr</span>::<span class="ident">null</span>(),
@@ -765,9 +756,13 @@
 
 <span class="doccomment">/// An opaque token for retrieving an output from a computation.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Copy</span>,<span class="ident">Clone</span>,<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">OutputToken</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">FetchToken</span> {
     <span class="ident">index</span>: <span class="ident">usize</span>,
 }
+
+<span class="doccomment">/// Deprecated alias for FetchToken.</span>
+<span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">note</span><span class="op">=</span><span class="string">&quot;Use FetchToken instead.&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">OutputToken</span> <span class="op">=</span> <span class="ident">FetchToken</span>;
 
 <span class="doccomment">/// Manages the inputs and outputs for a single execution of a graph.</span>
 <span class="doccomment">///</span>
@@ -775,9 +770,20 @@
 <span class="doccomment">/// adding some inputs to it, requesting some outputs, passing it to `Session::run`</span>
 <span class="doccomment">/// and then taking the outputs out of it.</span>
 <span class="doccomment">///</span>
-<span class="doccomment">/// This will be renamed to Step once the old API goes away.</span>
+<span class="doccomment">/// Example:</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// ```rust,ignore</span>
+<span class="doccomment">/// let mut args = SessionRunArgs::new();</span>
+<span class="doccomment">/// args.add_feed(&amp;op1, 0, &amp;tensor1);</span>
+<span class="doccomment">/// args.add_feed(&amp;op2, 0, &amp;tensor2);</span>
+<span class="doccomment">/// let result_token = args.request_fetch(&amp;op3, 0);</span>
+<span class="doccomment">/// session.run(&amp;mut args)?;</span>
+<span class="doccomment">/// let result_tensor = args.fetch(result_token)?;</span>
+<span class="doccomment">/// ```</span>
+<span class="doccomment">///</span>
+<span class="doccomment">/// See examples/addition.rs for a more concrete example.</span>
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">Debug</span>)]</span>
-<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">StepWithGraph</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> {
+<span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">SessionRunArgs</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> {
     <span class="ident">input_ports</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">tf</span>::<span class="ident">TF_Output</span><span class="op">&gt;</span>,
     <span class="ident">input_tensors</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;l</span> <span class="ident">AnyTensor</span><span class="op">&gt;</span>,
 
@@ -789,10 +795,10 @@
     <span class="ident">phantom</span>: <span class="ident">marker</span>::<span class="ident">PhantomData</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="lifetime">&#39;l</span> ()<span class="op">&gt;</span>,
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> <span class="ident">StepWithGraph</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> {
-    <span class="doccomment">/// Creates a StepWithGraph.</span>
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> <span class="ident">SessionRunArgs</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> {
+    <span class="doccomment">/// Creates a SessionRunArgs.</span>
     <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>() <span class="op">-&gt;</span> <span class="self">Self</span> {
-        <span class="ident">StepWithGraph</span> {
+        <span class="ident">SessionRunArgs</span> {
             <span class="ident">input_ports</span>: <span class="macro">vec</span><span class="macro">!</span>[],
             <span class="ident">input_tensors</span>: <span class="macro">vec</span><span class="macro">!</span>[],
 
@@ -805,11 +811,13 @@
         }
     }
 
-    <span class="doccomment">/// Adds an input to be fed to the graph.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_input</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TensorType</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
-                                    <span class="ident">operation</span>: <span class="kw-2">&amp;</span><span class="ident">Operation</span>,
-                                    <span class="ident">index</span>: <span class="ident">c_int</span>,
-                                    <span class="ident">tensor</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l</span> <span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {
+    <span class="doccomment">/// Adds an input to be fed to the graph. The index selects which output of</span>
+    <span class="doccomment">/// the operation to feed. For most operations, there is only one output,</span>
+    <span class="doccomment">/// so the index should be 0.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_feed</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TensorType</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
+                                   <span class="ident">operation</span>: <span class="kw-2">&amp;</span><span class="ident">Operation</span>,
+                                   <span class="ident">index</span>: <span class="ident">c_int</span>,
+                                   <span class="ident">tensor</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l</span> <span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {
         <span class="self">self</span>.<span class="ident">input_ports</span>.<span class="ident">push</span>(<span class="ident">tf</span>::<span class="ident">TF_Output</span> {
                                   <span class="ident">oper</span>: <span class="ident">operation</span>.<span class="ident">inner</span>(),
                                   <span class="ident">index</span>: <span class="ident">index</span>,
@@ -817,22 +825,41 @@
         <span class="self">self</span>.<span class="ident">input_tensors</span>.<span class="ident">push</span>(<span class="ident">tensor</span>);
     }
 
-    <span class="doccomment">/// Requests that an output is fetched from the graph after running this step.</span>
-    <span class="doccomment">/// Returns an index that you can then use to fetch this output from the step after running it.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">request_output</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">operation</span>: <span class="kw-2">&amp;</span><span class="ident">Operation</span>, <span class="ident">index</span>: <span class="ident">c_int</span>) <span class="op">-&gt;</span> <span class="ident">OutputToken</span> {
+    <span class="doccomment">/// Deprecated alias for add_feed.</span>
+    <span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">note</span><span class="op">=</span><span class="string">&quot;Use add_feed instead.&quot;</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">add_input</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TensorType</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
+                                    <span class="ident">operation</span>: <span class="kw-2">&amp;</span><span class="ident">Operation</span>,
+                                    <span class="ident">index</span>: <span class="ident">c_int</span>,
+                                    <span class="ident">tensor</span>: <span class="kw-2">&amp;</span><span class="lifetime">&#39;l</span> <span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) {
+        <span class="self">self</span>.<span class="ident">add_feed</span>(<span class="ident">operation</span>, <span class="ident">index</span>, <span class="ident">tensor</span>)
+    }
+
+    <span class="doccomment">/// Requests that an output is fetched from the graph after running this</span>
+    <span class="doccomment">/// step. The index selects which output of the operation to return. For</span>
+    <span class="doccomment">/// most operations, there is only one output, so the index should be 0.</span>
+    <span class="doccomment">/// Returns a token that you can then use to fetch this output from the args</span>
+    <span class="doccomment">/// after running it.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">request_fetch</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">operation</span>: <span class="kw-2">&amp;</span><span class="ident">Operation</span>, <span class="ident">index</span>: <span class="ident">c_int</span>) <span class="op">-&gt;</span> <span class="ident">FetchToken</span> {
         <span class="self">self</span>.<span class="ident">output_ports</span>.<span class="ident">push</span>(<span class="ident">tf</span>::<span class="ident">TF_Output</span> {
                                    <span class="ident">oper</span>: <span class="ident">operation</span>.<span class="ident">inner</span>(),
                                    <span class="ident">index</span>: <span class="ident">index</span>,
                                });
         <span class="self">self</span>.<span class="ident">output_tensors</span>.<span class="ident">push</span>(<span class="ident">ptr</span>::<span class="ident">null_mut</span>());
-        <span class="ident">OutputToken</span> { <span class="ident">index</span>: <span class="self">self</span>.<span class="ident">output_tensors</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span> }
+        <span class="ident">FetchToken</span> { <span class="ident">index</span>: <span class="self">self</span>.<span class="ident">output_tensors</span>.<span class="ident">len</span>() <span class="op">-</span> <span class="number">1</span> }
     }
 
-    <span class="doccomment">/// Extracts a tensor output given an index. A given index can only be extracted</span>
-    <span class="doccomment">/// once per `Session::run`.</span>
-    <span class="doccomment">/// Returns an error if output_idx is out of range, output is unavailable or the</span>
-    <span class="doccomment">/// requested type does not match the type of the actual tensor.</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">take_output</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TensorType</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">token</span>: <span class="ident">OutputToken</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span> {
+    <span class="doccomment">/// Deprecated alias for request_fetch.</span>
+    <span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">note</span><span class="op">=</span><span class="string">&quot;Use request_fetch instead.&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">request_output</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">operation</span>: <span class="kw-2">&amp;</span><span class="ident">Operation</span>, <span class="ident">index</span>: <span class="ident">c_int</span>) <span class="op">-&gt;</span> <span class="ident">OutputToken</span> {
+        <span class="self">self</span>.<span class="ident">request_fetch</span>(<span class="ident">operation</span>, <span class="ident">index</span>)
+    }
+
+    <span class="doccomment">/// Extracts a tensor output given a token. A given token can only be</span>
+    <span class="doccomment">/// extracted once per `Session::run`. Returns an error if the token is</span>
+    <span class="doccomment">/// invalid, output is unavailable or the requested type does not match the</span>
+    <span class="doccomment">/// type of the actual tensor.</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">fetch</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TensorType</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">token</span>: <span class="ident">FetchToken</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span> {
         <span class="kw">let</span> <span class="ident">output_idx</span> <span class="op">=</span> <span class="ident">token</span>.<span class="ident">index</span>;
         <span class="kw">if</span> <span class="ident">output_idx</span> <span class="op">&gt;=</span> <span class="self">self</span>.<span class="ident">output_tensors</span>.<span class="ident">len</span>() {
             <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">Status</span>::<span class="ident">new_set</span>(<span class="ident">Code</span>::<span class="ident">OutOfRange</span>,
@@ -858,6 +885,13 @@
         <span class="kw">let</span> <span class="ident">tensor</span> <span class="op">=</span> <span class="kw">unsafe</span> { <span class="ident">Tensor</span>::<span class="ident">from_tf_tensor</span>(<span class="self">self</span>.<span class="ident">output_tensors</span>[<span class="ident">output_idx</span>]).<span class="ident">unwrap</span>() };
         <span class="self">self</span>.<span class="ident">output_tensors</span>[<span class="ident">output_idx</span>] <span class="op">=</span> <span class="ident">ptr</span>::<span class="ident">null_mut</span>();
         <span class="prelude-val">Ok</span>(<span class="ident">tensor</span>)
+    }
+
+    <span class="doccomment">/// Deprecated alias for fetch.</span>
+    <span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">note</span><span class="op">=</span><span class="string">&quot;Use fetch instead.&quot;</span>)]</span>
+    <span class="attribute">#[<span class="ident">allow</span>(<span class="ident">deprecated</span>)]</span>
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">take_output</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">TensorType</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">token</span>: <span class="ident">OutputToken</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;&gt;</span> {
+        <span class="self">self</span>.<span class="ident">fetch</span>(<span class="ident">token</span>)
     }
 
     <span class="doccomment">/// Adds a target operation to be executed when running the graph.</span>
@@ -890,11 +924,15 @@
     }
 }
 
-<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">StepWithGraph</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> {
+<span class="kw">impl</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> <span class="ident">Drop</span> <span class="kw">for</span> <span class="ident">SessionRunArgs</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> {
     <span class="kw">fn</span> <span class="ident">drop</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) {
         <span class="self">self</span>.<span class="ident">drop_output_tensors</span>();
     }
 }
+
+<span class="doccomment">/// Deprecated alias for SessionRunArgs.</span>
+<span class="attribute">#[<span class="ident">deprecated</span>(<span class="ident">note</span><span class="op">=</span><span class="string">&quot;Use SessionRunArgs instead.&quot;</span>)]</span>
+<span class="kw">pub</span> <span class="kw">type</span> <span class="ident">StepWithGraph</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">SessionRunArgs</span><span class="op">&lt;</span><span class="lifetime">&#39;l</span><span class="op">&gt;</span>;
 
 <span class="comment">////////////////////////</span>
 
@@ -966,7 +1004,7 @@
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_close</span>() {
-        <span class="kw">let</span> (<span class="kw-2">mut</span> <span class="ident">session</span>, _, _) <span class="op">=</span> <span class="ident">create_session</span>();
+        <span class="kw">let</span> (<span class="kw-2">mut</span> <span class="ident">session</span>, <span class="kw">_</span>, <span class="kw">_</span>) <span class="op">=</span> <span class="ident">create_session</span>();
         <span class="kw">let</span> <span class="ident">status</span> <span class="op">=</span> <span class="ident">session</span>.<span class="ident">close</span>();
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">status</span>.<span class="ident">is_ok</span>());
     }
@@ -977,11 +1015,11 @@
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">x</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;&gt;</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span>[<span class="number">2</span>]);
         <span class="ident">x</span>[<span class="number">0</span>] <span class="op">=</span> <span class="number">2.0</span>;
         <span class="ident">x</span>[<span class="number">1</span>] <span class="op">=</span> <span class="number">3.0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">step</span> <span class="op">=</span> <span class="ident">StepWithGraph</span>::<span class="ident">new</span>();
-        <span class="ident">step</span>.<span class="ident">add_input</span>(<span class="kw-2">&amp;</span><span class="ident">x_operation</span>, <span class="number">0</span>, <span class="kw-2">&amp;</span><span class="ident">x</span>);
-        <span class="kw">let</span> <span class="ident">output_token</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">request_output</span>(<span class="kw-2">&amp;</span><span class="ident">y_operation</span>, <span class="number">0</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">step</span> <span class="op">=</span> <span class="ident">SessionRunArgs</span>::<span class="ident">new</span>();
+        <span class="ident">step</span>.<span class="ident">add_feed</span>(<span class="kw-2">&amp;</span><span class="ident">x_operation</span>, <span class="number">0</span>, <span class="kw-2">&amp;</span><span class="ident">x</span>);
+        <span class="kw">let</span> <span class="ident">output_token</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">request_fetch</span>(<span class="kw-2">&amp;</span><span class="ident">y_operation</span>, <span class="number">0</span>);
         <span class="ident">session</span>.<span class="ident">run</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">step</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">output_tensor</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">take_output</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>(<span class="ident">output_token</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">output_tensor</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">fetch</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>(<span class="ident">output_token</span>).<span class="ident">unwrap</span>();
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">output_tensor</span>.<span class="ident">len</span>(), <span class="number">2</span>);
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">output_tensor</span>[<span class="number">0</span>], <span class="number">4.0</span>);
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">output_tensor</span>[<span class="number">1</span>], <span class="number">6.0</span>);
@@ -1013,85 +1051,21 @@
         <span class="ident">x</span>[<span class="number">0</span>] <span class="op">=</span> <span class="number">2.0</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">y</span> <span class="op">=</span> <span class="op">&lt;</span><span class="ident">Tensor</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;&gt;</span>::<span class="ident">new</span>(<span class="kw-2">&amp;</span>[<span class="number">1</span>]);
         <span class="ident">y</span>[<span class="number">0</span>] <span class="op">=</span> <span class="number">4.0</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">step</span> <span class="op">=</span> <span class="ident">StepWithGraph</span>::<span class="ident">new</span>();
-        <span class="ident">step</span>.<span class="ident">add_input</span>(<span class="kw-2">&amp;</span><span class="ident">x_op</span>, <span class="number">0</span>, <span class="kw-2">&amp;</span><span class="ident">x</span>);
-        <span class="ident">step</span>.<span class="ident">add_input</span>(<span class="kw-2">&amp;</span><span class="ident">y_op</span>, <span class="number">0</span>, <span class="kw-2">&amp;</span><span class="ident">y</span>);
-        <span class="kw">let</span> <span class="ident">output_token</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">request_output</span>(<span class="kw-2">&amp;</span><span class="ident">y_hat_op</span>, <span class="number">0</span>);
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">step</span> <span class="op">=</span> <span class="ident">SessionRunArgs</span>::<span class="ident">new</span>();
+        <span class="ident">step</span>.<span class="ident">add_feed</span>(<span class="kw-2">&amp;</span><span class="ident">x_op</span>, <span class="number">0</span>, <span class="kw-2">&amp;</span><span class="ident">x</span>);
+        <span class="ident">step</span>.<span class="ident">add_feed</span>(<span class="kw-2">&amp;</span><span class="ident">y_op</span>, <span class="number">0</span>, <span class="kw-2">&amp;</span><span class="ident">y</span>);
+        <span class="kw">let</span> <span class="ident">output_token</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">request_fetch</span>(<span class="kw-2">&amp;</span><span class="ident">y_hat_op</span>, <span class="number">0</span>);
         <span class="ident">session</span>.<span class="ident">run</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="ident">step</span>).<span class="ident">unwrap</span>();
-        <span class="kw">let</span> <span class="ident">output_tensor</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">take_output</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>(<span class="ident">output_token</span>).<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="ident">output_tensor</span> <span class="op">=</span> <span class="ident">step</span>.<span class="ident">fetch</span>::<span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span>(<span class="ident">output_token</span>).<span class="ident">unwrap</span>();
         <span class="macro">assert_eq</span><span class="macro">!</span>(<span class="ident">output_tensor</span>.<span class="ident">len</span>(), <span class="number">1</span>);
     }
 
     <span class="attribute">#[<span class="ident">test</span>]</span>
     <span class="kw">fn</span> <span class="ident">test_device_list</span>() {
-        <span class="kw">let</span> (<span class="ident">session</span>, _, _) <span class="op">=</span> <span class="ident">create_session</span>();
+        <span class="kw">let</span> (<span class="ident">session</span>, <span class="kw">_</span>, <span class="kw">_</span>) <span class="op">=</span> <span class="ident">create_session</span>();
         <span class="kw">let</span> <span class="ident">devices</span> <span class="op">=</span> <span class="ident">session</span>.<span class="ident">device_list</span>().<span class="ident">unwrap</span>();
         <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">devices</span>.<span class="ident">iter</span>().<span class="ident">any</span>(<span class="op">|</span><span class="ident">d</span><span class="op">|</span> <span class="ident">d</span>.<span class="ident">device_type</span> <span class="op">==</span> <span class="string">&quot;CPU&quot;</span>), <span class="string">&quot;devices: {:?}&quot;</span>, <span class="ident">devices</span>);
     }
 }
 </pre>
-</section>
-    <section id='search' class="content hidden"></section>
-
-    <section class="footer"></section>
-
-    <aside id="help" class="hidden">
-        <div>
-            <h1 class="hidden">Help</h1>
-
-            <div class="shortcuts">
-                <h2>Keyboard Shortcuts</h2>
-
-                <dl>
-                    <dt><kbd>?</kbd></dt>
-                    <dd>Show this help dialog</dd>
-                    <dt><kbd>S</kbd></dt>
-                    <dd>Focus the search field</dd>
-                    <dt><kbd>↑</kbd></dt>
-                    <dd>Move up in search results</dd>
-                    <dt><kbd>↓</kbd></dt>
-                    <dd>Move down in search results</dd>
-                    <dt><kbd>↹</kbd></dt>
-                    <dd>Switch tab</dd>
-                    <dt><kbd>&#9166;</kbd></dt>
-                    <dd>Go to active search result</dd>
-                    <dt><kbd>+</kbd></dt>
-                    <dd>Expand all sections</dd>
-                    <dt><kbd>-</kbd></dt>
-                    <dd>Collapse all sections</dd>
-                </dl>
-            </div>
-
-            <div class="infos">
-                <h2>Search Tricks</h2>
-
-                <p>
-                    Prefix searches with a type followed by a colon (e.g.
-                    <code>fn:</code>) to restrict the search to a given type.
-                </p>
-
-                <p>
-                    Accepted types are: <code>fn</code>, <code>mod</code>,
-                    <code>struct</code>, <code>enum</code>,
-                    <code>trait</code>, <code>type</code>, <code>macro</code>,
-                    and <code>const</code>.
-                </p>
-
-                <p>
-                    Search functions by type signature (e.g.
-                    <code>vec -> usize</code> or <code>* -> vec</code>)
-                </p>
-            </div>
-        </div>
-    </aside>
-
-    
-
-    <script>
-        window.rootPath = "../../";
-        window.currentCrate = "tensorflow";
-    </script>
-    <script src="../../main.js"></script>
-    <script defer src="../../search-index.js"></script>
-</body>
-</html>
+</section><section id="search" class="content hidden"></section><section class="footer"></section><aside id="help" class="hidden"><div><h1 class="hidden">Help</h1><div class="shortcuts"><h2>Keyboard Shortcuts</h2><dl><dt><kbd>?</kbd></dt><dd>Show this help dialog</dd><dt><kbd>S</kbd></dt><dd>Focus the search field</dd><dt><kbd>↑</kbd></dt><dd>Move up in search results</dd><dt><kbd>↓</kbd></dt><dd>Move down in search results</dd><dt><kbd>↹</kbd></dt><dd>Switch tab</dd><dt><kbd>&#9166;</kbd></dt><dd>Go to active search result</dd><dt><kbd>+</kbd></dt><dd>Expand all sections</dd><dt><kbd>-</kbd></dt><dd>Collapse all sections</dd></dl></div><div class="infos"><h2>Search Tricks</h2><p>Prefix searches with a type followed by a colon (e.g. <code>fn:</code>) to restrict the search to a given type.</p><p>Accepted types are: <code>fn</code>, <code>mod</code>, <code>struct</code>, <code>enum</code>, <code>trait</code>, <code>type</code>, <code>macro</code>, and <code>const</code>.</p><p>Search functions by type signature (e.g. <code>vec -> usize</code> or <code>* -> vec</code>)</p><p>Search multiple things at once by splitting your query with comma (e.g. <code>str,u8</code> or <code>String,struct:Vec,test</code>)</p></div></div></aside><script>window.rootPath = "../../";window.currentCrate = "tensorflow";</script><script src="../../aliases.js"></script><script src="../../main.js"></script><script defer src="../../search-index.js"></script></body></html>
