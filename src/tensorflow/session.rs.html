@@ -532,6 +532,14 @@
 <span id="532">532</span>
 <span id="533">533</span>
 <span id="534">534</span>
+<span id="535">535</span>
+<span id="536">536</span>
+<span id="537">537</span>
+<span id="538">538</span>
+<span id="539">539</span>
+<span id="540">540</span>
+<span id="541">541</span>
+<span id="542">542</span>
 </pre><pre class="rust ">
 <span class="kw">use</span> <span class="ident">tf</span>;
 <span class="kw">use</span> <span class="ident">libc</span>::{<span class="ident">c_char</span>, <span class="ident">c_int</span>};
@@ -728,10 +736,15 @@
                     <span class="kw">if</span> <span class="op">!</span><span class="ident">status</span>.<span class="ident">is_ok</span>() {
                         <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">status</span>);
                     }
+                    <span class="kw">let</span> <span class="ident">incarnation</span> <span class="op">=</span> <span class="ident">tf</span>::<span class="ident">TF_DeviceListIncarnation</span>(<span class="ident">list</span>, <span class="ident">i</span>, <span class="ident">status</span>.<span class="ident">inner</span>);
+                    <span class="kw">if</span> <span class="op">!</span><span class="ident">status</span>.<span class="ident">is_ok</span>() {
+                        <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">status</span>);
+                    }
                     <span class="ident">devices</span>.<span class="ident">push</span>(<span class="ident">Device</span> {
                         <span class="ident">name</span>: <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">c_name</span>).<span class="ident">to_str</span>()<span class="question-mark">?</span>.<span class="ident">to_string</span>(),
                         <span class="ident">device_type</span>: <span class="ident">CStr</span>::<span class="ident">from_ptr</span>(<span class="ident">c_type</span>).<span class="ident">to_str</span>()<span class="question-mark">?</span>.<span class="ident">to_string</span>(),
                         <span class="ident">memory_bytes</span>: <span class="ident">bytes</span>,
+                        <span class="ident">incarnation</span>,
                     });
                 }
                 <span class="prelude-val">Ok</span>(<span class="ident">devices</span>)
@@ -947,6 +960,9 @@
 
     <span class="doccomment">/// Amount of memory on the device.</span>
     <span class="kw">pub</span> <span class="ident">memory_bytes</span>: <span class="ident">i64</span>,
+
+    <span class="doccomment">/// Incarnation number of the device.</span>
+    <span class="kw">pub</span> <span class="ident">incarnation</span>: <span class="ident">u64</span>,
 }
 
 <span class="comment">////////////////////////</span>
